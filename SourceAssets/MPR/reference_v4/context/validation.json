@@ -1,0 +1,70 @@
+{
+  "success": true,
+  "geometry_version": 5,
+  "source_manifest_sha256": "4135a32281ecb0554eb7f71a919176ad580a41b7d83bceb8fbaa1cf71a085872",
+  "calibrated_source_sha256": "b877ec8561c2106f4c50c9b2c3ca829d9b8453f897c257bdf04f8e6f4bfe3401",
+  "building_counts": {
+    "house_gable": 132,
+    "orthogonal_l_industrial": 2,
+    "flat_industrial": 5,
+    "warehouse_deep_docks": 1,
+    "sawtooth_industrial": 3,
+    "cylindrical_tank": 8
+  },
+  "mesh_rows": 45,
+  "lod0_meshes": 29,
+  "lod0_triangles": 70221,
+  "all_lods_triangles": 78789,
+  "tank_geometry": [
+    {
+      "id": "tank_01",
+      "center_error_m": 0.0,
+      "radius_error_m": 0.0,
+      "circularity_error_m": 2.4868995751603507e-14
+    },
+    {
+      "id": "tank_02",
+      "center_error_m": 0.0,
+      "radius_error_m": 0.0,
+      "circularity_error_m": 5.3290705182007514e-14
+    },
+    {
+      "id": "tank_03",
+      "center_error_m": 0.0,
+      "radius_error_m": 0.0,
+      "circularity_error_m": 2.842170943040401e-14
+    },
+    {
+      "id": "tank_04",
+      "center_error_m": 0.0,
+      "radius_error_m": 0.0,
+      "circularity_error_m": 2.842170943040401e-14
+    },
+    {
+      "id": "tank_05",
+      "center_error_m": 0.0,
+      "radius_error_m": 0.0,
+      "circularity_error_m": 3.197442310920451e-14
+    },
+    {
+      "id": "tank_06",
+      "center_error_m": 0.0,
+      "radius_error_m": 0.0,
+      "circularity_error_m": 5.3290705182007514e-14
+    },
+    {
+      "id": "tank_07",
+      "center_error_m": 0.0,
+      "radius_error_m": 0.0,
+      "circularity_error_m": 3.375077994860476e-14
+    },
+    {
+      "id": "tank_08",
+      "center_error_m": 0.0,
+      "radius_error_m": 0.0,
+      "circularity_error_m": 2.3092638912203256e-14
+    }
+  ],
+  "errors": [],
+  "limits": "Source dependency and physical geometry verification; not final UE visual acceptance. Heights and unseen facade details remain visual estimates."
+}

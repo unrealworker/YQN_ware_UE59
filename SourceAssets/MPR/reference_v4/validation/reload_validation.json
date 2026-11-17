@@ -1,0 +1,1835 @@
+{
+  "success": true,
+  "map": "/Game/Maps/MPR_CAD_Warehouse",
+  "reload_verified": true,
+  "preservation": {
+    "success": true,
+    "protected_actors": 136,
+    "interior_actors": 136,
+    "protected_digest": "4f04d58a0e87fc58ebd1153eed4436b8f1e481a3a0572fac084113f013dbbbab",
+    "protected_assets": 45,
+    "new_exterior_actors": 250
+  },
+  "map_sha256": "ea0eb9fd1c41725d282530b4429e7109f7c148473468fe86748e40bb2d401bb7",
+  "source_manifest_hashes": {
+    "Architecture": "dd46d34784a43cec7c85c674206917a127bc9cb7dbdd159ba8164d19ec5ae0f6",
+    "Props": "50e5eb8af400eb96e63d289ab054393e71f2dc9b8f47e9ada0f8f14cd2f303a6",
+    "Site": "2179263159f2a0c516b82f6de8bb0dd8f113b32ba5b00dd6735cd55aeff875ca",
+    "Context": "70e257dc3e7a2335998feed5aa4727b32bb6266bb620a4a42d780c0d3c616767"
+  },
+  "mesh_count": 130,
+  "mesh_audit": {
+    "SM_MPR4_Facade_00": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 312,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RoofEdge_00": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 24,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Facade_01": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 216,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RoofEdge_01": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 24,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Facade_02": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 10452,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RoofEdge_02": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 24,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Facade_03": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 216,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RoofEdge_03": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 24,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Facade_04": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 312,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RoofEdge_04": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 24,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Facade_05": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 1752,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RoofEdge_05": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 24,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Facade_06": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 312,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RoofEdge_06": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 24,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Facade_07": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 504,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RoofEdge_07": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 24,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Facade_08": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 312,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RoofEdge_08": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 24,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Facade_09": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 312,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RoofEdge_09": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 24,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Facade_10": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 312,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RoofEdge_10": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 24,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Facade_11": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 312,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RoofEdge_11": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 24,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Facade_12": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 10188,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RoofEdge_12": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 24,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Facade_13": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 216,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RoofEdge_13": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 24,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Facade_14": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 312,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RoofEdge_14": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 24,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Facade_15": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 2808,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RoofEdge_15": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 24,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RoofSkin_00": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 112,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RoofSkin_01": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 96,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RoofSkin_02": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 94,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RoofSkin_03": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 130,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_DockShelter": {
+      "lods": 1,
+      "slots": 4,
+      "source_triangles": 340,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RollerDock": {
+      "lods": 3,
+      "slots": 4,
+      "source_triangles": 1544,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RollerDriveIn": {
+      "lods": 3,
+      "slots": 4,
+      "source_triangles": 1984,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_DockLeveller": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 364,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Bollard": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 208,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_WallLamp": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 112,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_DockNumberPlate": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 44,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Digit_0": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 72,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Digit_1": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 24,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Digit_2": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 60,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Digit_3": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 60,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Digit_4": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 48,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Digit_5": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 60,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Digit_6": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 72,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Digit_7": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 36,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Digit_8": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 84,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Digit_9": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 72,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_OfficeGlazing_West": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 840,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_OfficeGlazing_East": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 504,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_SolarBank_00_0": {
+      "lods": 3,
+      "slots": 4,
+      "source_triangles": 18006,
+      "category": "Architecture",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0,
+      "explicit_lod_audit": {
+        "slot_roles": [
+          "MPR4_SolarFrame",
+          "MPR4_SolarCells",
+          "MPR4_SolarMid",
+          "MPR4_SolarFar"
+        ],
+        "lods": [
+          {
+            "lod": 0,
+            "screen_size": 1.0,
+            "full_precision_uvs": true,
+            "sections": [
+              {
+                "section": 0,
+                "slot_index": 0,
+                "role": "MPR4_SolarFrame",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarFrame"
+              },
+              {
+                "section": 1,
+                "slot_index": 1,
+                "role": "MPR4_SolarCells",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarCells"
+              },
+              {
+                "section": 2,
+                "slot_index": 2,
+                "role": "MPR4_SolarMid",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarMid"
+              }
+            ]
+          },
+          {
+            "lod": 1,
+            "screen_size": 0.5904667973518372,
+            "full_precision_uvs": true,
+            "sections": [
+              {
+                "section": 0,
+                "slot_index": 2,
+                "role": "MPR4_SolarMid",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarMid"
+              },
+              {
+                "section": 1,
+                "slot_index": 0,
+                "role": "MPR4_SolarFrame",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarFrame"
+              }
+            ]
+          },
+          {
+            "lod": 2,
+            "screen_size": 0.22962598502635956,
+            "full_precision_uvs": true,
+            "sections": [
+              {
+                "section": 0,
+                "slot_index": 3,
+                "role": "MPR4_SolarFar",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarFar"
+              },
+              {
+                "section": 1,
+                "slot_index": 0,
+                "role": "MPR4_SolarFrame",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarFrame"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "SM_MPR4_SolarBank_01_0": {
+      "lods": 3,
+      "slots": 4,
+      "source_triangles": 21014,
+      "category": "Architecture",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0,
+      "explicit_lod_audit": {
+        "slot_roles": [
+          "MPR4_SolarFrame",
+          "MPR4_SolarCells",
+          "MPR4_SolarMid",
+          "MPR4_SolarFar"
+        ],
+        "lods": [
+          {
+            "lod": 0,
+            "screen_size": 1.0,
+            "full_precision_uvs": true,
+            "sections": [
+              {
+                "section": 0,
+                "slot_index": 0,
+                "role": "MPR4_SolarFrame",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarFrame"
+              },
+              {
+                "section": 1,
+                "slot_index": 1,
+                "role": "MPR4_SolarCells",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarCells"
+              },
+              {
+                "section": 2,
+                "slot_index": 2,
+                "role": "MPR4_SolarMid",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarMid"
+              }
+            ]
+          },
+          {
+            "lod": 1,
+            "screen_size": 0.6395840048789978,
+            "full_precision_uvs": true,
+            "sections": [
+              {
+                "section": 0,
+                "slot_index": 2,
+                "role": "MPR4_SolarMid",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarMid"
+              },
+              {
+                "section": 1,
+                "slot_index": 0,
+                "role": "MPR4_SolarFrame",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarFrame"
+              }
+            ]
+          },
+          {
+            "lod": 2,
+            "screen_size": 0.24872711300849915,
+            "full_precision_uvs": true,
+            "sections": [
+              {
+                "section": 0,
+                "slot_index": 3,
+                "role": "MPR4_SolarFar",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarFar"
+              },
+              {
+                "section": 1,
+                "slot_index": 0,
+                "role": "MPR4_SolarFrame",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarFrame"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "SM_MPR4_SolarBank_01_1": {
+      "lods": 3,
+      "slots": 4,
+      "source_triangles": 14212,
+      "category": "Architecture",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0,
+      "explicit_lod_audit": {
+        "slot_roles": [
+          "MPR4_SolarFrame",
+          "MPR4_SolarCells",
+          "MPR4_SolarMid",
+          "MPR4_SolarFar"
+        ],
+        "lods": [
+          {
+            "lod": 0,
+            "screen_size": 1.0,
+            "full_precision_uvs": true,
+            "sections": [
+              {
+                "section": 0,
+                "slot_index": 0,
+                "role": "MPR4_SolarFrame",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarFrame"
+              },
+              {
+                "section": 1,
+                "slot_index": 1,
+                "role": "MPR4_SolarCells",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarCells"
+              },
+              {
+                "section": 2,
+                "slot_index": 2,
+                "role": "MPR4_SolarMid",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarMid"
+              }
+            ]
+          },
+          {
+            "lod": 1,
+            "screen_size": 0.5053457021713257,
+            "full_precision_uvs": true,
+            "sections": [
+              {
+                "section": 0,
+                "slot_index": 2,
+                "role": "MPR4_SolarMid",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarMid"
+              },
+              {
+                "section": 1,
+                "slot_index": 0,
+                "role": "MPR4_SolarFrame",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarFrame"
+              }
+            ]
+          },
+          {
+            "lod": 2,
+            "screen_size": 0.19652333855628967,
+            "full_precision_uvs": true,
+            "sections": [
+              {
+                "section": 0,
+                "slot_index": 3,
+                "role": "MPR4_SolarFar",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarFar"
+              },
+              {
+                "section": 1,
+                "slot_index": 0,
+                "role": "MPR4_SolarFrame",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarFrame"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "SM_MPR4_SolarBank_02_0": {
+      "lods": 3,
+      "slots": 4,
+      "source_triangles": 29862,
+      "category": "Architecture",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0,
+      "explicit_lod_audit": {
+        "slot_roles": [
+          "MPR4_SolarFrame",
+          "MPR4_SolarCells",
+          "MPR4_SolarMid",
+          "MPR4_SolarFar"
+        ],
+        "lods": [
+          {
+            "lod": 0,
+            "screen_size": 1.0,
+            "full_precision_uvs": true,
+            "sections": [
+              {
+                "section": 0,
+                "slot_index": 0,
+                "role": "MPR4_SolarFrame",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarFrame"
+              },
+              {
+                "section": 1,
+                "slot_index": 1,
+                "role": "MPR4_SolarCells",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarCells"
+              },
+              {
+                "section": 2,
+                "slot_index": 2,
+                "role": "MPR4_SolarMid",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarMid"
+              }
+            ]
+          },
+          {
+            "lod": 1,
+            "screen_size": 0.8506903648376465,
+            "full_precision_uvs": true,
+            "sections": [
+              {
+                "section": 0,
+                "slot_index": 2,
+                "role": "MPR4_SolarMid",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarMid"
+              },
+              {
+                "section": 1,
+                "slot_index": 0,
+                "role": "MPR4_SolarFrame",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarFrame"
+              }
+            ]
+          },
+          {
+            "lod": 2,
+            "screen_size": 0.33082401752471924,
+            "full_precision_uvs": true,
+            "sections": [
+              {
+                "section": 0,
+                "slot_index": 3,
+                "role": "MPR4_SolarFar",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarFar"
+              },
+              {
+                "section": 1,
+                "slot_index": 0,
+                "role": "MPR4_SolarFrame",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarFrame"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "SM_MPR4_SolarBank_02_1": {
+      "lods": 3,
+      "slots": 4,
+      "source_triangles": 17256,
+      "category": "Architecture",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0,
+      "explicit_lod_audit": {
+        "slot_roles": [
+          "MPR4_SolarFrame",
+          "MPR4_SolarCells",
+          "MPR4_SolarMid",
+          "MPR4_SolarFar"
+        ],
+        "lods": [
+          {
+            "lod": 0,
+            "screen_size": 1.0,
+            "full_precision_uvs": true,
+            "sections": [
+              {
+                "section": 0,
+                "slot_index": 0,
+                "role": "MPR4_SolarFrame",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarFrame"
+              },
+              {
+                "section": 1,
+                "slot_index": 1,
+                "role": "MPR4_SolarCells",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarCells"
+              },
+              {
+                "section": 2,
+                "slot_index": 2,
+                "role": "MPR4_SolarMid",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarMid"
+              }
+            ]
+          },
+          {
+            "lod": 1,
+            "screen_size": 0.7639979124069214,
+            "full_precision_uvs": true,
+            "sections": [
+              {
+                "section": 0,
+                "slot_index": 2,
+                "role": "MPR4_SolarMid",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarMid"
+              },
+              {
+                "section": 1,
+                "slot_index": 0,
+                "role": "MPR4_SolarFrame",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarFrame"
+              }
+            ]
+          },
+          {
+            "lod": 2,
+            "screen_size": 0.29711028933525085,
+            "full_precision_uvs": true,
+            "sections": [
+              {
+                "section": 0,
+                "slot_index": 3,
+                "role": "MPR4_SolarFar",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarFar"
+              },
+              {
+                "section": 1,
+                "slot_index": 0,
+                "role": "MPR4_SolarFrame",
+                "material": "/Game/MPRWarehouse/ReferenceV4/Materials/MI_MPR4_SolarFrame"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "SM_MPR4_RoofLight": {
+      "lods": 1,
+      "slots": 4,
+      "source_triangles": 144,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_RoofHVAC": {
+      "lods": 1,
+      "slots": 5,
+      "source_triangles": 504,
+      "category": "Architecture",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Tree_Oak": {
+      "lods": 1,
+      "slots": 4,
+      "source_triangles": 949999,
+      "category": "Props",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Car_0": {
+      "lods": 1,
+      "slots": 7,
+      "source_triangles": 964,
+      "category": "Props",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Car_1": {
+      "lods": 1,
+      "slots": 7,
+      "source_triangles": 964,
+      "category": "Props",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Trailer_White": {
+      "lods": 3,
+      "slots": 8,
+      "source_triangles": 2206,
+      "category": "Props",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Trailer_Blue": {
+      "lods": 3,
+      "slots": 8,
+      "source_triangles": 2206,
+      "category": "Props",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Trailer_Coral": {
+      "lods": 3,
+      "slots": 8,
+      "source_triangles": 2206,
+      "category": "Props",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Tractor": {
+      "lods": 3,
+      "slots": 7,
+      "source_triangles": 4360,
+      "category": "Props",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_FreightBoxcar": {
+      "lods": 3,
+      "slots": 5,
+      "source_triangles": 1784,
+      "category": "Props",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Locomotive": {
+      "lods": 3,
+      "slots": 6,
+      "source_triangles": 1912,
+      "category": "Props",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_Roads": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 10253,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_Courts": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 699,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_RaisedCurbs": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 75041,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_RoadEdges": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 52096,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_RoadTerminalCurbs": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 4167,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_RoadTerminalRoads": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 1740,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_RoadTerminalEdges": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 5422,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_RoadCenter": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 6444,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_CourtSeams": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 630,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_ParkingBayLines": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 60,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_RetentionPond": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 16,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_RetentionBank": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 101,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_PondWalk": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 726,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_RailYardContinuousBallast": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 529,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_Near_RailBed": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 2705,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_Far_E_RailBed": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 12116,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_Far_S_RailBed": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 2403,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_Far_E_Rails": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 22196,
+      "category": "Site",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_Near_Rails": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 16608,
+      "category": "Site",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_Far_S_Rails": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 3360,
+      "category": "Site",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_Far_E_Sleepers": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 18742,
+      "category": "Site",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_Near_Sleepers": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 11772,
+      "category": "Site",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_Far_S_Sleepers": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 7452,
+      "category": "Site",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_TrailerStands": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 208,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_DockApronInfill": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 216,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_FarGround": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 2,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_ContinuousTerrain": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 11701,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_CampusPlanting": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 739,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_PlanTreeIslands": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 1380,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Site_PlanTreeIslandCurbs": {
+      "lods": 1,
+      "slots": 1,
+      "source_triangles": 12960,
+      "category": "Site",
+      "nanite_enabled": false,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_Houses_-3_2": {
+      "lods": 2,
+      "slots": 5,
+      "source_triangles": 3582,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_Houses_-2_2": {
+      "lods": 2,
+      "slots": 5,
+      "source_triangles": 3060,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_Houses_-4_2": {
+      "lods": 2,
+      "slots": 5,
+      "source_triangles": 378,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_Houses_-3_1": {
+      "lods": 2,
+      "slots": 5,
+      "source_triangles": 12078,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_Houses_-2_1": {
+      "lods": 2,
+      "slots": 5,
+      "source_triangles": 6606,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_Houses_-4_1": {
+      "lods": 2,
+      "slots": 5,
+      "source_triangles": 792,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_Houses_-3_0": {
+      "lods": 2,
+      "slots": 5,
+      "source_triangles": 6570,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_Houses_-2_0": {
+      "lods": 2,
+      "slots": 5,
+      "source_triangles": 3960,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_Houses_-3_-1": {
+      "lods": 2,
+      "slots": 5,
+      "source_triangles": 1962,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_Houses_-2_-1": {
+      "lods": 2,
+      "slots": 5,
+      "source_triangles": 1584,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_Houses_-4_-1": {
+      "lods": 2,
+      "slots": 5,
+      "source_triangles": 378,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_Houses_-3_-2": {
+      "lods": 2,
+      "slots": 5,
+      "source_triangles": 8262,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_Houses_-4_-2": {
+      "lods": 2,
+      "slots": 5,
+      "source_triangles": 756,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_Houses_-2_-2": {
+      "lods": 2,
+      "slots": 5,
+      "source_triangles": 1134,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_Houses_-3_-3": {
+      "lods": 2,
+      "slots": 5,
+      "source_triangles": 378,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_northwest_l_office": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 232,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_north_office_warehouse": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 72,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_neighbor_warehouse": {
+      "lods": 1,
+      "slots": 5,
+      "source_triangles": 2404,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_west_workshop_small_01": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 72,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_west_workshop_small_02": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 72,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_west_workshop_annex": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 152,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_west_detached_industrial": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 72,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_east_industrial": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 72,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_rail_service_shed_01": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 156,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_rail_service_shed_02": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 156,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_rail_service_shed_03": {
+      "lods": 1,
+      "slots": 3,
+      "source_triangles": 156,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_TankField": {
+      "lods": 2,
+      "slots": 3,
+      "source_triangles": 5976,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_TankPads": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 2537,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    },
+    "SM_MPR4_Context_TankPipes": {
+      "lods": 1,
+      "slots": 2,
+      "source_triangles": 6612,
+      "category": "Context",
+      "nanite_enabled": true,
+      "nanite_max_edge_length_factor": 0.0
+    }
+  },
+  "exterior_instances": 1444,
+  "pv_material_audit": {
+    "MPR4_SolarFrame": {
+      "override_dithered_lod_transition": true,
+      "dithered_lod_transition": true
+    },
+    "MPR4_SolarMid": {
+      "override_dithered_lod_transition": true,
+      "dithered_lod_transition": true
+    },
+    "MPR4_SolarFar": {
+      "override_dithered_lod_transition": true,
+      "dithered_lod_transition": true
+    },
+    "MPR4_SolarCells": {
+      "override_dithered_lod_transition": true,
+      "dithered_lod_transition": true
+    }
+  },
+  "pv_texture_audit": {
+    "/Game/MPRWarehouse/ReferenceV4/Textures/T_MPR4_SolarMid_Base.T_MPR4_SolarMid_Base": {
+      "mip_gen_settings": "<TextureMipGenSettings.TMGS_SIMPLE_AVERAGE: 1>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "lod_bias": 0,
+      "never_stream": false,
+      "virtual_texture_streaming": false,
+      "max_texture_size": 2048,
+      "note": "Saved configuration readback; resident mip count and temporal behavior require runtime validation."
+    },
+    "/Game/MPRWarehouse/ReferenceV4/Textures/T_MPR4_SolarMid_Normal.T_MPR4_SolarMid_Normal": {
+      "mip_gen_settings": "<TextureMipGenSettings.TMGS_SIMPLE_AVERAGE: 1>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "lod_bias": 0,
+      "never_stream": false,
+      "virtual_texture_streaming": false,
+      "max_texture_size": 2048,
+      "note": "Saved configuration readback; resident mip count and temporal behavior require runtime validation."
+    },
+    "/Game/MPRWarehouse/ReferenceV4/Textures/T_MPR4_SolarFar_Base.T_MPR4_SolarFar_Base": {
+      "mip_gen_settings": "<TextureMipGenSettings.TMGS_SIMPLE_AVERAGE: 1>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "lod_bias": 0,
+      "never_stream": false,
+      "virtual_texture_streaming": false,
+      "max_texture_size": 2048,
+      "note": "Saved configuration readback; resident mip count and temporal behavior require runtime validation."
+    },
+    "/Game/MPRWarehouse/ReferenceV4/Textures/T_MPR4_SolarFar_Normal.T_MPR4_SolarFar_Normal": {
+      "mip_gen_settings": "<TextureMipGenSettings.TMGS_SIMPLE_AVERAGE: 1>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "lod_bias": 0,
+      "never_stream": false,
+      "virtual_texture_streaming": false,
+      "max_texture_size": 2048,
+      "note": "Saved configuration readback; resident mip count and temporal behavior require runtime validation."
+    },
+    "/Game/MPRWarehouse/ReferenceV4/Textures/T_MPR4_SolarCells_Base.T_MPR4_SolarCells_Base": {
+      "mip_gen_settings": "<TextureMipGenSettings.TMGS_SIMPLE_AVERAGE: 1>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "lod_bias": 0,
+      "never_stream": false,
+      "virtual_texture_streaming": false,
+      "max_texture_size": 2048,
+      "note": "Saved configuration readback; resident mip count and temporal behavior require runtime validation."
+    },
+    "/Game/MPRWarehouse/ReferenceV4/Textures/T_MPR4_SolarCells_Normal.T_MPR4_SolarCells_Normal": {
+      "mip_gen_settings": "<TextureMipGenSettings.TMGS_SIMPLE_AVERAGE: 1>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "lod_bias": 0,
+      "never_stream": false,
+      "virtual_texture_streaming": false,
+      "max_texture_size": 2048,
+      "note": "Saved configuration readback; resident mip count and temporal behavior require runtime validation."
+    }
+  },
+  "terminal_material_audit": {
+    "MPR4_TerminalAsphalt": {
+      "parent": "/Game/MPRWarehouse/ReferenceV4/Materials/M_MPR4_PBRTexturedTerminal.M_MPR4_PBRTexturedTerminal",
+      "ground_role": "MPR3_Grass",
+      "opaque": true,
+      "ground_tint": [
+        0.34,
+        0.37,
+        0.28
+      ],
+      "ground_uv_scale_cm": [
+        0.0016666667070239782,
+        -0.0016666667070239782,
+        0.0
+      ]
+    },
+    "MPR4_TerminalCurb": {
+      "parent": "/Game/MPRWarehouse/ReferenceV4/Materials/M_MPR4_PBRTexturedTerminal.M_MPR4_PBRTexturedTerminal",
+      "ground_role": "MPR3_Grass",
+      "opaque": true,
+      "ground_tint": [
+        0.34,
+        0.37,
+        0.28
+      ],
+      "ground_uv_scale_cm": [
+        0.0016666667070239782,
+        -0.0016666667070239782,
+        0.0
+      ]
+    },
+    "MPR4_TerminalWhiteLine": {
+      "parent": "/Game/MPRWarehouse/ReferenceV4/Materials/M_MPR4_PBRSolidTerminal.M_MPR4_PBRSolidTerminal",
+      "ground_role": "MPR3_Grass",
+      "opaque": true,
+      "ground_tint": [
+        0.34,
+        0.37,
+        0.28
+      ],
+      "ground_uv_scale_cm": [
+        0.0016666667070239782,
+        -0.0016666667070239782,
+        0.0
+      ]
+    }
+  },
+  "instance_world_transform_audit": {
+    "SM_MPR4_WallLamp": {
+      "count": 97,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 4.440892098500626e-16
+      }
+    },
+    "SM_MPR4_RollerDriveIn": {
+      "count": 2,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 4.440892098500626e-16
+      }
+    },
+    "SM_MPR4_Bollard": {
+      "count": 148,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 4.440892098500626e-16
+      }
+    },
+    "SM_MPR4_DockNumberPlate": {
+      "count": 74,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 4.440892098500626e-16
+      }
+    },
+    "SM_MPR4_Digit_0": {
+      "count": 16,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 4.440892098500626e-16
+      }
+    },
+    "SM_MPR4_Digit_1": {
+      "count": 18,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 4.440892098500626e-16
+      }
+    },
+    "SM_MPR4_DockShelter": {
+      "count": 72,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 4.440892098500626e-16
+      }
+    },
+    "SM_MPR4_RollerDock": {
+      "count": 72,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 4.440892098500626e-16
+      }
+    },
+    "SM_MPR4_DockLeveller": {
+      "count": 72,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 4.440892098500626e-16
+      }
+    },
+    "SM_MPR4_Digit_2": {
+      "count": 18,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 4.440892098500626e-16
+      }
+    },
+    "SM_MPR4_Digit_3": {
+      "count": 18,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 4.440892098500626e-16
+      }
+    },
+    "SM_MPR4_Digit_4": {
+      "count": 18,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 4.440892098500626e-16
+      }
+    },
+    "SM_MPR4_Digit_5": {
+      "count": 17,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 4.440892098500626e-16
+      }
+    },
+    "SM_MPR4_Digit_6": {
+      "count": 17,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 4.440892098500626e-16
+      }
+    },
+    "SM_MPR4_Digit_7": {
+      "count": 12,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 4.440892098500626e-16
+      }
+    },
+    "SM_MPR4_Digit_8": {
+      "count": 7,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 4.440892098500626e-16
+      }
+    },
+    "SM_MPR4_Digit_9": {
+      "count": 7,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 4.440892098500626e-16
+      }
+    },
+    "SM_MPR4_RoofLight": {
+      "count": 195,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 0.0
+      }
+    },
+    "SM_MPR4_Car_0": {
+      "count": 10,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 4.440892098500626e-16
+      }
+    },
+    "SM_MPR4_Car_1": {
+      "count": 15,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 4.440892098500626e-16
+      }
+    },
+    "SM_MPR4_FreightBoxcar": {
+      "count": 53,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 6.830189170012753e-06,
+        "scale": 6.661338147750939e-16
+      }
+    },
+    "SM_MPR4_Locomotive": {
+      "count": 3,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 2.9575586669421963e-06,
+        "scale": 5.551115123125783e-16
+      }
+    },
+    "SM_MPR4_Trailer_White": {
+      "count": 26,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 2.220446049250313e-16
+      }
+    },
+    "SM_MPR4_Tractor": {
+      "count": 52,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 2.220446049250313e-16
+      }
+    },
+    "SM_MPR4_Trailer_Blue": {
+      "count": 15,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 2.220446049250313e-16
+      }
+    },
+    "SM_MPR4_Trailer_Coral": {
+      "count": 11,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 0.0,
+        "scale": 2.220446049250313e-16
+      }
+    },
+    "SM_MPR4_Tree_Oak": {
+      "count": 379,
+      "maximum_error": {
+        "position_cm": 0.0,
+        "rotation_deg": 1.5080649355333733e-05,
+        "scale": 1.3322676295501878e-15
+      }
+    }
+  },
+  "static_identity_actors": 103,
+  "transform_tolerances": {
+    "position_cm": 0.5,
+    "rotation_deg": 0.05,
+    "scale": 0.0001
+  },
+  "captures": [
+    {
+      "name": "01-overall",
+      "path": "D:\\UEPro\\Test\\Saved\\MPR\\reference_v4\\01-overall.png",
+      "bytes": 2259314,
+      "sha256": "b47305a64351d481e8242237f0a8fac5ceec44d8dc4eefc6187495dcf9b40b12"
+    },
+    {
+      "name": "02-yard-corner",
+      "path": "D:\\UEPro\\Test\\Saved\\MPR\\reference_v4\\02-yard-corner.png",
+      "bytes": 2455775,
+      "sha256": "2a07a546f80bcc3379742a4d619f2dddaa22d7b62148ccf2b846136e46fb2f9d"
+    },
+    {
+      "name": "03-roof",
+      "path": "D:\\UEPro\\Test\\Saved\\MPR\\reference_v4\\03-roof.png",
+      "bytes": 1988350,
+      "sha256": "199171ad7a4129468ac8e545e2595c460549cd2b5f747ea8ea69c54e0837b1f9"
+    },
+    {
+      "name": "04-docks",
+      "path": "D:\\UEPro\\Test\\Saved\\MPR\\reference_v4\\04-docks.png",
+      "bytes": 2140339,
+      "sha256": "4007ff1840ce0cd8c63d3d0ad0030aa85dabfed98ba0ce2153bc961e50b351dc"
+    },
+    {
+      "name": "05-yard",
+      "path": "D:\\UEPro\\Test\\Saved\\MPR\\reference_v4\\05-yard.png",
+      "bytes": 1792905,
+      "sha256": "1462f1222d3febb05d1a1d73ef0c734c7d11749c1192c696fdf5367c989b92c7"
+    },
+    {
+      "name": "06-pond",
+      "path": "D:\\UEPro\\Test\\Saved\\MPR\\reference_v4\\06-pond.png",
+      "bytes": 2029190,
+      "sha256": "e4b8ff0068662a0c5e2a8385675f051c886650c6ae2c4804b463804e11e13769"
+    },
+    {
+      "name": "07-railway",
+      "path": "D:\\UEPro\\Test\\Saved\\MPR\\reference_v4\\07-railway.png",
+      "bytes": 2348361,
+      "sha256": "f6e2059b1456612ab94b58c110d598aaa53416ee825e4cbfa9a95c40d6cabebe"
+    },
+    {
+      "name": "08-interior-preserved",
+      "path": "D:\\UEPro\\Test\\Saved\\MPR\\reference_v4\\08-interior-preserved.png",
+      "bytes": 2459313,
+      "sha256": "130a6b4d8df8a58eda93274ee39648f6f9370c0494940a9ba0d9edf8d27525b0"
+    }
+  ],
+  "preservation_after_capture": {
+    "success": true,
+    "protected_actors": 136,
+    "interior_actors": 136,
+    "protected_digest": "4f04d58a0e87fc58ebd1153eed4436b8f1e481a3a0572fac084113f013dbbbab",
+    "protected_assets": 45,
+    "new_exterior_actors": 250
+  },
+  "error": null,
+  "elapsed_seconds": 31.53200000000652,
+  "map_saved_by_validator": false
+}

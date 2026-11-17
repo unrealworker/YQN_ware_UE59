@@ -1,0 +1,271 @@
+{
+  "map": "/Game/Maps/MPR_CAD_Warehouse",
+  "date": "2026-11-02",
+  "map_sha256": "89678630cfd0113a0b7ae460dedd01923a79688ee3a0ac2c3356797ae135011b",
+  "saved_actor_count": 399,
+  "hism_groups": 308,
+  "instances": 4922,
+  "mesh_count": 108,
+  "generated_material_packages": 28,
+  "compatibility_material_instances": 10,
+  "exterior_material_instances": 17,
+  "exterior_surface_masters": 1,
+  "source_counts": {
+    "racks": 2867,
+    "columns": 164,
+    "dock_doors": 72,
+    "drive_in_doors": 2
+  },
+  "hardware_evidence": [
+    "LogInit: OS: Windows 11 (25H2) [10.0.26200.9711] (), CPU: Intel(R) Core(TM) i9-14900HX, GPU: NVIDIA GeForce RTX 5060 Laptop GPU",
+    "[2026.11.02-07.47.32:399][  0]LogD3D12RHI: Chosen D3D12 Adapter Id = 0"
+  ],
+  "performance_log_sha256": "1df44700c055db15593a7af8b57f079ab2230087d15d19fcf80f98300d5bfa3e",
+  "missing_runtime_material_usage": false,
+  "ghs_map_preserved": true,
+  "images": [
+    {
+      "path": "SourceAssets/MPR/validation/01-exterior.png",
+      "sha256": "9b4a5c5ec83da314c220097be2b0a55c4735dcea9769ce04f51f5f90c5b381e3",
+      "bytes": 2717835
+    },
+    {
+      "path": "SourceAssets/MPR/validation/02-context.png",
+      "sha256": "1e063bed908c9dcb55e7bc1cbf707935fdee80161c59969d5717621643683224",
+      "bytes": 2616615
+    },
+    {
+      "path": "SourceAssets/MPR/validation/03-interior.png",
+      "sha256": "f6479e6d316d21e2f513e67bc03884a8938105ef7ea8ba83c7cf5ce89eab94fd",
+      "bytes": 2813009
+    },
+    {
+      "path": "SourceAssets/MPR/validation/04-racks.png",
+      "sha256": "790986ee0718320b2636247bd450428461710b0bca8bce60cab9ed847e6dbe95",
+      "bytes": 3324653
+    },
+    {
+      "path": "SourceAssets/MPR/validation/05-sorting.png",
+      "sha256": "add2c16ce2e49dd968291d92374b6707890cb6b4ff9af2d8a622afefbfae0c70",
+      "bytes": 3585538
+    },
+    {
+      "path": "SourceAssets/MPR/validation/06-docks.png",
+      "sha256": "8519e54846b7dab904459da53cff17e0ba6e04600f869ccb8b99d1e39314596c",
+      "bytes": 2029650
+    },
+    {
+      "path": "SourceAssets/MPR/validation/07-sorter-detail.png",
+      "sha256": "4658de20310862240c98f79b7287f5bd915734b5e77e0282b4bc18d704bb900d",
+      "bytes": 3176943
+    },
+    {
+      "path": "SourceAssets/MPR/validation/08-rack-detail.png",
+      "sha256": "956b47e3bbdb492f4782cdd972ae1d31897d675fac0d0a782cb7946cb2685fae",
+      "bytes": 3127532
+    },
+    {
+      "path": "SourceAssets/MPR/validation/09-site-roads.png",
+      "sha256": "bef60602b7d65cc82a6186b931acd16411b192d09692129e5a41fe399a6b5d1a",
+      "bytes": 2752599
+    },
+    {
+      "path": "SourceAssets/MPR/validation/10-railway.png",
+      "sha256": "a3c1bd96ab0dc8ca5c18e5d84e45ca85df1e8249b23b9e22bf1554deb29dfcbd",
+      "bytes": 2825283
+    },
+    {
+      "path": "SourceAssets/MPR/validation/11-roof.png",
+      "sha256": "c9bdd8584cbb47d0e0f547cd5dd0e1fa63b03735b1ff0e6e8a2ee2e2b30822e1",
+      "bytes": 2405276
+    },
+    {
+      "path": "SourceAssets/MPR/validation/performance_20261102_074742_366187_exterior.png",
+      "sha256": "2d3ccbad059ed801d557d40e6a31737a840320c620fbbf21abcabd3bc314f2cd",
+      "bytes": 2757898
+    },
+    {
+      "path": "SourceAssets/MPR/validation/performance_20261102_074742_366187_interior.png",
+      "sha256": "0dfc01d0d6899d39a0eca9ca81169fd8ba827a75aea3ec89fcec36685fd14ab4",
+      "bytes": 2957461
+    }
+  ],
+  "scope": "One local UnrealEditor -game offscreen process, static exterior/interior, no HUD; not Pixel Streaming or concurrency acceptance.",
+  "camera_controls": {
+    "success": true,
+    "api_sequence": [
+      "reset_overview(True)",
+      "zoom_steps(1)",
+      "orbit_pixels(100,25)",
+      "reset_overview(True)"
+    ],
+    "scope": "Actual player-camera readback via shared production pawn APIs; not OS input delivery.",
+    "pawn_tick_enabled_throughout": true,
+    "baseline": {
+      "position_cm": [
+        -11155.721977970468,
+        41633.72121689841,
+        38809.57516881375
+      ],
+      "rotation_deg": [
+        -41.99999999999995,
+        -74.99999999999986,
+        -8.559716955360178e-15
+      ],
+      "viewport": [
+        1920,
+        1080
+      ],
+      "view_target": "/Game/Maps/MPR_CAD_Warehouse.MPR_CAD_Warehouse:PersistentLevel.BP_GHS_WarehouseCamera_C_0"
+    },
+    "after_zoom": {
+      "position_cm": [
+        -10872.25859872649,
+        40575.82148347471,
+        37823.43609631808
+      ],
+      "rotation_deg": [
+        -41.99999999999995,
+        -74.99999999999986,
+        -8.559716955360178e-15
+      ],
+      "viewport": [
+        1920,
+        1080
+      ],
+      "view_target": "/Game/Maps/MPR_CAD_Warehouse.MPR_CAD_Warehouse:PersistentLevel.BP_GHS_WarehouseCamera_C_0"
+    },
+    "after_orbit": {
+      "position_cm": [
+        -15361.25264536887,
+        36608.03632245581,
+        37713.15914639743
+      ],
+      "rotation_deg": [
+        -43.52956312995531,
+        -67.2363859645382,
+        -0.0
+      ],
+      "viewport": [
+        1920,
+        1080
+      ],
+      "view_target": "/Game/Maps/MPR_CAD_Warehouse.MPR_CAD_Warehouse:PersistentLevel.BP_GHS_WarehouseCamera_C_0"
+    },
+    "after_reset": {
+      "position_cm": [
+        -11155.721977970468,
+        41633.72121689841,
+        38809.57516881375
+      ],
+      "rotation_deg": [
+        -41.99999999999995,
+        -74.99999999999986,
+        -8.559716955360178e-15
+      ],
+      "viewport": [
+        1920,
+        1080
+      ],
+      "view_target": "/Game/Maps/MPR_CAD_Warehouse.MPR_CAD_Warehouse:PersistentLevel.BP_GHS_WarehouseCamera_C_0"
+    },
+    "baseline_distance_cm": 57999.99999999996,
+    "zoom_distance_cm": 56526.238281249956,
+    "orbit_yaw_delta_deg": 7.763614035461671,
+    "reset_position_error_cm": 0.0
+  },
+  "performance": {
+    "exterior": {
+      "FrameTime": {
+        "count": 2049,
+        "mean_ms": 7.319813665202537,
+        "median_ms": 7.2809,
+        "p95_ms": 8.0073,
+        "p99_ms": 8.3364,
+        "max_ms": 13.834,
+        "over_16_67ms_count": 0,
+        "over_33_33ms_count": 0,
+        "over_50ms_count": 0
+      },
+      "GameThreadTime": {
+        "count": 2049,
+        "mean_ms": 1.7519550024402146,
+        "median_ms": 1.745,
+        "p95_ms": 2.0382,
+        "p99_ms": 2.1946,
+        "max_ms": 6.0305,
+        "over_16_67ms_count": 0,
+        "over_33_33ms_count": 0,
+        "over_50ms_count": 0
+      },
+      "RenderThreadTime": {
+        "count": 2049,
+        "mean_ms": 7.318151146900927,
+        "median_ms": 7.2864,
+        "p95_ms": 7.935,
+        "p99_ms": 8.2638,
+        "max_ms": 11.6569,
+        "over_16_67ms_count": 0,
+        "over_33_33ms_count": 0,
+        "over_50ms_count": 0
+      },
+      "GPUTime": {
+        "count": 2049,
+        "mean_ms": 6.82224924353343,
+        "median_ms": 6.7784,
+        "p95_ms": 7.2502,
+        "p99_ms": 7.4294,
+        "max_ms": 10.8457,
+        "over_16_67ms_count": 0,
+        "over_33_33ms_count": 0,
+        "over_50ms_count": 0
+      }
+    },
+    "interior": {
+      "FrameTime": {
+        "count": 1441,
+        "mean_ms": 10.409154753643303,
+        "median_ms": 10.3617,
+        "p95_ms": 11.282,
+        "p99_ms": 11.7493,
+        "max_ms": 24.8146,
+        "over_16_67ms_count": 2,
+        "over_33_33ms_count": 0,
+        "over_50ms_count": 0
+      },
+      "GameThreadTime": {
+        "count": 1441,
+        "mean_ms": 1.8933433726578766,
+        "median_ms": 1.8676,
+        "p95_ms": 2.1284,
+        "p99_ms": 2.3696,
+        "max_ms": 24.9717,
+        "over_16_67ms_count": 1,
+        "over_33_33ms_count": 0,
+        "over_50ms_count": 0
+      },
+      "RenderThreadTime": {
+        "count": 1441,
+        "mean_ms": 10.397463358778625,
+        "median_ms": 10.3837,
+        "p95_ms": 11.1704,
+        "p99_ms": 11.6242,
+        "max_ms": 17.9435,
+        "over_16_67ms_count": 1,
+        "over_33_33ms_count": 0,
+        "over_50ms_count": 0
+      },
+      "GPUTime": {
+        "count": 1441,
+        "mean_ms": 9.88052026370576,
+        "median_ms": 9.8183,
+        "p95_ms": 10.4441,
+        "p99_ms": 10.715,
+        "max_ms": 14.2807,
+        "over_16_67ms_count": 0,
+        "over_33_33ms_count": 0,
+        "over_50ms_count": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "success": true,
+  "roundtrips": [
+    {
+      "name": "SM_MPR4_Tree_Oak",
+      "bounds_error_m": 0.0,
+      "triangles": 949999,
+      "material_allocation_unchanged": true,
+      "embedded_base_colors_linear": {
+        "MPR4_Bark": [
+          0.20499999821186066,
+          0.18000000715255737,
+          0.13500000536441803
+        ],
+        "MPR4_LeafMid": [
+          0.25999999046325684,
+          0.33000001311302185,
+          0.2549999952316284
+        ],
+        "MPR4_LeafLight": [
+          0.3499999940395355,
+          0.4000000059604645,
+          0.3199999928474426
+        ],
+        "MPR4_LeafShade": [
+          0.1899999976158142,
+          0.25999999046325684,
+          0.1899999976158142
+        ]
+      },
+      "max_base_color_error": 1.3113021835042815e-08,
+      "fbx_sha256": "b41ee4ccc09d901fa12984f9f6abbe52f6ac9380d2814ed1903bf8c87c1470a2"
+    },
+    {
+      "name": "SM_MPR4_Trailer_White",
+      "triangles": 2206,
+      "bounds_error_m": 0.0,
+      "minimum_z_m": 0.0,
+      "sha256": "a38a039abbd58aa24f3161eff848a713498ce80886a445e971ff1eb7ca775ff6"
+    },
+    {
+      "name": "SM_MPR4_Trailer_Blue",
+      "triangles": 2206,
+      "bounds_error_m": 0.0,
+      "minimum_z_m": 0.0,
+      "sha256": "1f10dad8c5636fb075af5d126ee9a1c89751fa8847d7cbb61fec65d3a6663919"
+    },
+    {
+      "name": "SM_MPR4_Trailer_Coral",
+      "triangles": 2206,
+      "bounds_error_m": 0.0,
+      "minimum_z_m": 0.0,
+      "sha256": "73a3d860b374ee380114c54521fa532a4b2f7f676f2c79576acad450236e8880"
+    },
+    {
+      "name": "SM_MPR4_Car_0",
+      "bounds_error_m": 0.0,
+      "triangles": 964,
+      "material_allocation_unchanged": true,
+      "embedded_base_colors_linear": {
+        "MPR4_ReflectRed": [
+          0.6499999761581421,
+          0.03500000014901161,
+          0.02500000037252903
+        ],
+        "MPR4_ReflectWhite": [
+          0.8799999952316284,
+          0.8899999856948853,
+          0.8500000238418579
+        ],
+        "MPR4_VehicleGlass": [
+          0.10000000149011612,
+          0.1599999964237213,
+          0.20000000298023224
+        ],
+        "MPR4_VehicleMetal": [
+          0.3799999952316284,
+          0.4099999964237213,
+          0.4099999964237213
+        ],
+        "MPR4_VehicleRubber": [
+          0.026000000536441803,
+          0.029999999329447746,
+          0.03099999949336052
+        ],
+        "MPR4_VehicleSeam": [
+          0.25,
+          0.2800000011920929,
+          0.28999999165534973
+        ],
+        "MPR4_VehicleWhite": [
+          0.699999988079071,
+          0.7300000190734863,
+          0.7400000095367432
+        ]
+      },
+      "max_base_color_error": 2.384185793236071e-08,
+      "fbx_sha256": "040eea8ad088667d5f5773d6cc8312fb965e710c51bb91cdcd4de8c7a826c103"
+    },
+    {
+      "name": "SM_MPR4_Car_1",
+      "bounds_error_m": 0.0,
+      "triangles": 964,
+      "material_allocation_unchanged": true,
+      "embedded_base_colors_linear": {
+        "MPR4_ReflectRed": [
+          0.6499999761581421,
+          0.03500000014901161,
+          0.02500000037252903
+        ],
+        "MPR4_ReflectWhite": [
+          0.8799999952316284,
+          0.8899999856948853,
+          0.8500000238418579
+        ],
+        "MPR4_VehicleGlass": [
+          0.10000000149011612,
+          0.1599999964237213,
+          0.20000000298023224
+        ],
+        "MPR4_VehicleGray": [
+          0.3100000023841858,
+          0.3499999940395355,
+          0.3799999952316284
+        ],
+        "MPR4_VehicleMetal": [
+          0.3799999952316284,
+          0.4099999964237213,
+          0.4099999964237213
+        ],
+        "MPR4_VehicleRubber": [
+          0.026000000536441803,
+          0.029999999329447746,
+          0.03099999949336052
+        ],
+        "MPR4_VehicleSeam": [
+          0.25,
+          0.2800000011920929,
+          0.28999999165534973
+        ]
+      },
+      "max_base_color_error": 2.384185793236071e-08,
+      "fbx_sha256": "bcc24fd1b55fd867f2a85fa82e7e3652e7464092e37fa6f2fe92e8d680f6dd00"
+    },
+    {
+      "name": "SM_MPR4_FreightBoxcar",
+      "triangles": 1784,
+      "bounds_error_m": 0.0,
+      "minimum_z_m": 0.0,
+      "sha256": "a73b485f60128e98425a9a94d4624975b1fcf40602233c335bf39655a897b451"
+    },
+    {
+      "name": "SM_MPR4_Tractor",
+      "triangles": 4360,
+      "bounds_error_m": 0.0,
+      "minimum_z_m": 0.0,
+      "sha256": "97e1a304edf3ba36ecd8c80318face4f76636364fa670f8c0d488fbf864e57e7"
+    },
+    {
+      "name": "SM_MPR4_Locomotive",
+      "triangles": 1912,
+      "bounds_error_m": 0.0,
+      "minimum_z_m": 0.0,
+      "sha256": "d07b97af72abd8e7e6d462dc7b991d5ffc3cd1b7905566e320d8e18ed2bf4712"
+    }
+  ],
+  "tree_actual_radius_m": 6.418041146908877,
+  "visual_review_complete": false,
+  "geometry_review_complete": true,
+  "scene_lighting_review_complete": false,
+  "reviewed_views": [
+    "canopy_review/oak_calibrated_aerial.png",
+    "canopy_review/oak_close.png"
+  ],
+  "calibrated_aerial_geometry_reviewed": true,
+  "vehicle_geometry_unchanged": false,
+  "vehicle_modules_materials_synchronized": 6,
+  "transport_revision": "v6_grounded_tractor_and_continuous_consists"
+}

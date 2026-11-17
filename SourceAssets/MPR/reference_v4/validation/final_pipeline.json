@@ -1,0 +1,125 @@
+[
+  {
+    "name": "import",
+    "report": "Saved/MPR/reference_v4_build.json",
+    "sha256": "9ee895445a587d2dfd9ed466b5cb3497fda726563b6e26653060ab1708658e6c",
+    "success": true
+  },
+  {
+    "name": "reload",
+    "report": "Saved/MPR/reference_v4/validation.json",
+    "sha256": "7631106659637064aae5386ff3e03dd5151bbf40d00706d04ddeb910d9d4a359",
+    "success": true
+  },
+  {
+    "name": "performance",
+    "report": "Saved/MPR/performance.json",
+    "sha256": "081eb4b07b0e287c0823f0651e453656f676bb0b1d909b14df3342d8c21b37a8",
+    "success": true
+  },
+  {
+    "name": "runtime_views",
+    "report": "Saved/MPR/reference_v4/runtime_views/capture_report.json",
+    "sha256": "b8c3f199b16032b1f4ec97f25a445cdc77c1980a8ef8ea38def353aa0da0d173",
+    "success": true
+  },
+  {
+    "name": "plan_views",
+    "report": "Saved/MPR/road_v5/runtime_views/capture_report.json",
+    "sha256": "00703337930ee224698a23190d668b70d49369995ca5b5057f7c168e6bd41207",
+    "success": true
+  },
+  {
+    "name": "outside_views",
+    "report": "Saved/MPR/road_v5/outside_views/capture_report.json",
+    "sha256": "afc45e22522e52f635ede48b15ee707c1cc821dd06560d5e0287e3c2f127193f",
+    "success": true
+  },
+  {
+    "name": "detail_views",
+    "report": "Saved/MPR/feedback_v7/detail_views/capture_report.json",
+    "sha256": "096c28f2dcf59bb44140774bfaad77ad6970b59a7f00ef4c84f254690691633c",
+    "success": true
+  },
+  {
+    "name": "runtime_capture",
+    "report": "Saved/MPR/reference_v4/runtime_calibrated_capture.json",
+    "sha256": "ab63eacba7dc6508fdda03ff05eff5b6e178863c0618b75b0106090eefc3c530",
+    "success": true
+  },
+  {
+    "name": "blender",
+    "report": "SourceAssets/MPR/reference_v4/validation_blender/composition_validation.json",
+    "sha256": "de4dcbc7a7b64dc870967216d31c4d1d98bd436fb0c29ec415455f42e1a24753",
+    "success": true
+  },
+  {
+    "name": "package_dependencies",
+    "report": "SourceAssets/MPR/reference_v4/validation/package_dependencies.json",
+    "sha256": "16ee9461e109f9b38e177d117d2dc043ffd552640b2e9674121ac2e4e7c7ea68",
+    "success": true
+  },
+  {
+    "name": "spatial_audit",
+    "report": "SourceAssets/MPR/reference_v4/validation/spatial_audit.json",
+    "sha256": "fe604cfdf7bbfce52ee0c266cb30a79c6b70fb36f86aaa777ee4f01f568e6b8f",
+    "success": true
+  },
+  {
+    "name": "context_geometry",
+    "report": "Saved/MPR/road_v5/context_geometry_validation.json",
+    "sha256": "f7974c10e8422bd08d1727f54aafe940dfcbb768dea8759e8df7e89503ed2833",
+    "success": true
+  },
+  {
+    "name": "site_fbx",
+    "report": "SourceAssets/MPR/reference_v4/validation_blender/site_fbx_validation.json",
+    "sha256": "d0c4f09ac5165e4288b752cff97539496c519abcbb91c7ba17f6375635426eef",
+    "success": true
+  },
+  {
+    "name": "road_smoothing",
+    "report": "Saved/MPR/road_v5/road_smoothing_review.json",
+    "sha256": "14a360cf55946e85e13b288b7dd8802761e5b676eb2592c65bf7d299c43d40e5",
+    "success": true
+  },
+  {
+    "name": "outside_geometry",
+    "report": "Saved/MPR/road_v5/outside_road_review.json",
+    "sha256": "546739da5c852e5517c864be92ee78e1b874ff4ec8705c2c159681cb35e74fbe",
+    "success": true
+  },
+  {
+    "name": "campus_surfaces",
+    "report": "Saved/MPR/road_v5/campus_surface_review.json",
+    "sha256": "bc6412a7f90303f18b500536c1efdc5d238ab029b5c627ff92bfde3e7854c68e",
+    "success": true
+  },
+  {
+    "name": "transport_geometry",
+    "report": "SourceAssets/MPR/reference_v4/props/transport_validation.json",
+    "sha256": "7b4d056e3151c3acfa162e4dd09bdfe20a601a279fe925c2e95c5d8e187db71c",
+    "success": true
+  },
+  {
+    "name": "pv_source",
+    "report": "Saved/MPR/pv_v6/source_audit.json",
+    "sha256": "3bd8ef40e0b405e74d4ed35e464f7d5fc243c0233b8a65fcc5d05235b2934c78",
+    "success": true,
+    "evidence_scope": "auxiliary_cpu_source_audit_not_final_geometry_or_runtime"
+  },
+  {
+    "name": "solar_motion",
+    "report": "Saved/MPR/solar_motion/review/solar_motion_review.json",
+    "sha256": "532eef0b6cfb6c8f25e26f361b559da84c9a29ebf5ec5d74e962a3e512860e6e",
+    "success": true,
+    "evidence_scope": "paired_native_pose_samples_not_realtime_video_or_flicker_free_claim"
+  },
+  {
+    "name": "motion_far",
+    "report": "Saved/MPR/solar_motion/far/capture_report.json",
+    "sha256": "a67ea8ee41984029f6bd7ce60f78ad75c5503239131754993ba8b6dab404cdeb",
+    "success": true,
+    "evidence_scope": "24_native_far_pose_samples_not_active_LOD_readback_or_flicker_free_claim"
+  }
+]

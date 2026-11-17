@@ -1,0 +1,44 @@
+{
+  "success": true,
+  "renderer": "UE game viewport TSR",
+  "overscan_size": [
+    2006,
+    1860
+  ],
+  "crop": [
+    278,
+    949,
+    1728,
+    910
+  ],
+  "map_sha256": "ea0eb9fd1c41725d282530b4429e7109f7c148473468fe86748e40bb2d401bb7",
+  "render_quality": {
+    "r.Nanite.MaxPixelsPerEdge": "0.25",
+    "r.Nanite.AllowVoxels": "0",
+    "r.Shadow.Virtual.Enable": "1"
+  },
+  "camera_readback": {
+    "position_cm": [
+      -1530.368988489934,
+      81299.57153112907,
+      83070.60910203874
+    ],
+    "rotation_deg": [
+      -31.754525338769508,
+      -89.78021459983954,
+      0.1468110374385726
+    ],
+    "viewport": [
+      2006,
+      1860
+    ],
+    "view_target": "/Game/Maps/MPR_CAD_Warehouse.MPR_CAD_Warehouse:PersistentLevel.CameraActor_0"
+  },
+  "field_of_view": 56.830013275146484,
+  "projection_landmarks": 20,
+  "calibration_max_error_px": 0.04249038296223203,
+  "reference_landmark_rms_px": 2.2458373502257194,
+  "raw_image": "D:\\UEPro\\Test\\Saved\\MPR\\reference_v4\\runtime_overscan_1793704868201904200.png",
+  "map_unchanged": true,
+  "raw_image_sha256": "57404bda0d96430ffa50f68a0c126307df0ff01756f99c5823a6f3f6c758081b"
+}
