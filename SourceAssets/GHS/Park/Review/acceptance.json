@@ -1,0 +1,424 @@
+{
+  "date_local": "2026-10-22T15:52:26",
+  "timezone": "Asia/Shanghai",
+  "map": "/Game/Maps/GHS_CAD_NormalWarehouse_ZcoolSmartFactory",
+  "map_sha256": "eb46503811527cf427450d7a0a67bf9e89b63e4b97f0d50cbc775bca092d4f5b",
+  "manifest_sha256": "eac222675c1faffa8ba50afca43c9eb6849a0bbb0c811e86c32ada6aa1a27b7b",
+  "roof_manifest_sha256": "c63019e41bb37087690a5824df7534497019dce499067ebed5befe4899ce02d4",
+  "reference_style_sha256": "66259f36a674858879a0f786cbc0aebe55ea68b845fb15ce7822ff2ce5cb0dc5",
+  "style": {
+    "version": 1,
+    "reference": "codex-clipboard-0df2ba29-2688-4912-a76f-f19056c0ec63.png",
+    "palette": {
+      "Ground": [
+        0.52,
+        0.58,
+        0.66
+      ],
+      "Hardstand": [
+        0.53,
+        0.6,
+        0.68
+      ],
+      "Roads": [
+        0.17,
+        0.225,
+        0.3
+      ],
+      "ContextRoads": [
+        0.18,
+        0.235,
+        0.31
+      ],
+      "CampusRoads": [
+        0.38,
+        0.45,
+        0.52
+      ],
+      "Curbs": [
+        0.92,
+        0.95,
+        0.98
+      ],
+      "Markings": [
+        0.95,
+        0.97,
+        1.0
+      ],
+      "Buildings": [
+        0.9,
+        0.93,
+        0.98
+      ],
+      "Roofs": [
+        0.82,
+        0.87,
+        0.95
+      ],
+      "Landscape": [
+        0.47,
+        0.53,
+        0.48
+      ],
+      "Trees": [
+        0.28,
+        0.42,
+        0.24
+      ],
+      "TreesLight": [
+        0.36,
+        0.5,
+        0.3
+      ],
+      "TreesDark": [
+        0.18,
+        0.32,
+        0.15
+      ],
+      "Trunk": [
+        0.18,
+        0.15,
+        0.1
+      ]
+    },
+    "roof_color_linear": [
+      0.8,
+      0.88,
+      1.0
+    ],
+    "ground_material": "/Game/GHSZcoolSmartFactory/Park/Materials/M_GHSPark_Ground.M_GHSPark_Ground",
+    "studio_ground_material": "/Game/GHSZcoolSmartFactory/Presentation/M_GHSReference_Backdrop.M_GHSReference_Backdrop",
+    "lighting": {
+      "directional_intensity": 3.8,
+      "skylight_intensity": 0.5,
+      "directional_rotation": [
+        -55.0,
+        -38.0,
+        0.0
+      ],
+      "directional_color": [
+        1.0,
+        0.985,
+        0.965
+      ],
+      "skylight_color": [
+        0.87,
+        0.94,
+        1.0
+      ],
+      "directional_source_angle": 8.0,
+      "ambient_occlusion_intensity": 0.9,
+      "ambient_occlusion_radius_cm": 180.0,
+      "ambient_occlusion_quality": 80.0,
+      "bloom_intensity": 0.02,
+      "exposure_ev100": 0.0,
+      "lower_hemisphere_color": [
+        0.055,
+        0.075,
+        0.1
+      ],
+      "lower_hemisphere_is_black": false
+    },
+    "reference_camera": {
+      "target_uv_m": [
+        235.0,
+        87.0,
+        0.0
+      ],
+      "distance_cm": 85000.0,
+      "pitch": -46.0,
+      "yaw": -90.0
+    },
+    "scope": "Reference matching: separate cool-grey ground, darker roads, soft cool-white roof, larger rounded trees and readable forest islands. CAD layout and original business geometry remain.",
+    "selected_lighting_candidate": "Reference_C_with_balanced_hemisphere_fill"
+  },
+  "current_appearance_authority": "SourceAssets/GHS/Park/reference_style.json",
+  "actor_count": 360,
+  "static_layout_preserved": true,
+  "original_source_map_preserved": true,
+  "authorized_ground_color_replacement": true,
+  "ground_transform_preserved": {
+    "position": [
+      170.0,
+      240.0,
+      0.0
+    ],
+    "scale": [
+      1.1,
+      1.1,
+      1.1
+    ],
+    "rotation": [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  },
+  "prior_ground_material_backup": "Saved/ParkReferenceStyle/Before",
+  "component_material_overrides": {
+    "SM_GHSPark_Ground": [
+      "/Game/GHSZcoolSmartFactory/Park/Materials/M_GHSPark_Ground.M_GHSPark_Ground"
+    ],
+    "SM_GHSPark_Blue": [
+      "/Game/GHSZcoolSmartFactory/Materials/M_Zcool_Cobalt.M_Zcool_Cobalt"
+    ]
+  },
+  "shared_source_assets_sha256": {
+    "D:\\UEPro\\Test\\Content\\GHSNormalWarehouse\\TrucksLong\\SM_GHN_LongDockTruck.uasset": "740890fc3b54d672e1e16d3afca04503d0285fff4062d84dfa298fcd0d5352ad",
+    "D:\\UEPro\\Test\\SourceAssets\\GHS_Normal\\TrucksLong\\dock_truck_long.blend": "9f488bba3a1f513fc265c7a10f4ec27ca57c29ae80233870dd3ce949eaf6c802",
+    "D:\\UEPro\\Test\\SourceAssets\\GHS_Normal\\TrucksLong\\SM_GHN_LongDockTruck.fbx": "b2f5df7846a15ff810e4cfe62085a3462549f77374c389dfc5c2f3b8d8cb3770",
+    "D:\\UEPro\\Test\\Content\\GHSDigitalTwin\\Blueprints\\BP_GHS_InstanceGroup.uasset": "5b38d964c355664ac4b2b1c6568b0ab1629ba9c6b653e0ab951c9dc6815633bf"
+  },
+  "context_counts": {
+    "fence_posts": 604,
+    "fence_bars": 6306,
+    "fence_rails": 3134,
+    "gate_columns": 4,
+    "perimeter_gates": 2,
+    "landscape_shrubs": 332,
+    "low_poly_trees": 586,
+    "clustered_broadleaf_trees": 586,
+    "tree_candidates_omitted_for_road_clearance": 10,
+    "parked_cars": 157,
+    "detailed_compact_suv": 84,
+    "car_spaces": 112,
+    "detailed_sedan": 73,
+    "static_display_trucks": 27,
+    "trailer_spaces": 52,
+    "gatehouses": 2,
+    "detailed_context_houses": 338,
+    "house_variant_1": 81,
+    "house_windows": 7684,
+    "house_solar_panels": 2568,
+    "context_houses": 338,
+    "house_variant_0": 83,
+    "house_variant_2": 90,
+    "house_variant_3": 84,
+    "satellite_infill_houses": 39,
+    "residential_driveways": 338,
+    "residential_yard_wall_segments": 856,
+    "woodland_trees": 280,
+    "woodland_groups": 7,
+    "woodland_islands": 24,
+    "woodland_shrubs": 72,
+    "light_poles": 4,
+    "cad_road_segments": 79,
+    "context_road_segments": 75
+  },
+  "park_triangles": 1657364,
+  "roof_triangles": 8288,
+  "total_unique_triangles": 1665652,
+  "total_instanced_triangles": 2812148,
+  "vegetation": {
+    "forest_trees": 280,
+    "total_trees": 586,
+    "islands": 24,
+    "total_shrubs": 332,
+    "tree_triangles": 1856,
+    "tree_shape": "Five unequal foliage masses with short visible supporting branches",
+    "nanite_crown_meshes": 3,
+    "clearance": {
+      "trees": 280,
+      "islands": 24,
+      "minimum_spacing_m": 10.017596104135436,
+      "minimum_canopy_clearance_m": {
+        "roads": 11.935994663383195,
+        "buildings_and_driveways": 36.71436559800276,
+        "campus": 58.593871124737696,
+        "water": 18.73336051851162
+      },
+      "source": "Checked saved geometry metadata and independently recomputed tree spacing"
+    }
+  },
+  "truck_material_fix": {
+    "materials": 7,
+    "only_usage_flags_changed": true,
+    "live_and_disk_surface_properties_equal_before_save": true
+  },
+  "roof": {
+    "actor": "GHS_MainWarehouseRoof",
+    "mesh_count": 1,
+    "visibility_toggle_verified": true,
+    "product_ui_toggle_implemented": false
+  },
+  "saved_map_reload_passed": true,
+  "saved_map_reload_finished_utc": "2026-10-22T07:49:01.863390+00:00",
+  "runtime_checks": [
+    {
+      "name": "saved_campus_loaded_and_business_registry_preserved",
+      "passed": true
+    },
+    {
+      "name": "independent_roof_visibility_and_business_isolation",
+      "passed": true
+    },
+    {
+      "name": "initial_1080p_hud_ready",
+      "passed": true
+    },
+    {
+      "name": "initial_full_campus_1920x1080",
+      "passed": true
+    },
+    {
+      "name": "resized_2560x1600_hud_ready",
+      "passed": true
+    },
+    {
+      "name": "full_campus_after_live_resize_2560x1600",
+      "passed": true
+    },
+    {
+      "name": "full_campus_after_panel_collapse",
+      "passed": true
+    },
+    {
+      "name": "full_campus_after_panel_expand",
+      "passed": true
+    },
+    {
+      "name": "agv_selection_focus_and_details_visible",
+      "passed": true
+    },
+    {
+      "name": "overview_command_clears_selection_and_restores_campus",
+      "passed": true
+    },
+    {
+      "name": "region_racks_focus_preserved",
+      "passed": true
+    },
+    {
+      "name": "region_floor_focus_preserved",
+      "passed": true
+    },
+    {
+      "name": "final_full_campus_after_region_focus",
+      "passed": true
+    },
+    {
+      "name": "business_registry_unchanged_after_focus_resize_and_reset",
+      "passed": true
+    },
+    {
+      "name": "runtime_did_not_modify_either_saved_map",
+      "passed": true
+    }
+  ],
+  "runtime_elapsed_seconds": 32.09299999999348,
+  "runtime_business_registry": {
+    "equipment": 106,
+    "facilities": 56
+  },
+  "visual_review_passed": true,
+  "visual_evidence": {
+    "count": 6,
+    "render": "actual 1920x1080 game viewport",
+    "temporal_settle_seconds": 2.0,
+    "hud_hidden_for_art_only": true
+  },
+  "images": [
+    {
+      "file": "ReferenceOverview.png",
+      "sha256": "807a3010233bd682371d8ebd6cfeadbfeaa989c841f54fcf0829790978e35dbf",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "bytes": 2083921
+    },
+    {
+      "file": "ReferenceIsland.png",
+      "sha256": "68a9ff85499090313118664d0921e10c145d57d8af6d09c02cb30d732dd71653",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "bytes": 1276968
+    },
+    {
+      "file": "ReferenceTree.png",
+      "sha256": "29c9621787ace612634b4839c955f105671b6f8831053d123b10fb43340887b2",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "bytes": 2069163
+    },
+    {
+      "file": "ReferenceRoad.png",
+      "sha256": "36de61895dae77db313927b591fe46db47ae29981fa4aa8db06cb51e758a4f0a",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "bytes": 1360390
+    },
+    {
+      "file": "ReferenceRoof.png",
+      "sha256": "fcbad862c8320c7d2e8555aa39319ded5bd476638635d8a960ec29ed277f5b55",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "bytes": 1941370
+    },
+    {
+      "file": "ReferenceInterior.png",
+      "sha256": "fd7e88a0e08fff99d22b9131e120b2fe10978ea96d1ff07b28964f16bd1c6d15",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "bytes": 2195851
+    },
+    {
+      "file": "Runtime_Overview_1920x1080.png",
+      "sha256": "d01610dfff650f653aa99a082969eccffd79b29f695330b569860166802bc53a",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "bytes": 1707003
+    },
+    {
+      "file": "Runtime_Overview_2560x1600.png",
+      "sha256": "f7fadcc2f3d198e00dbcd40a62c0ec86c454a10f03060864a3359990cb13da46",
+      "dimensions": [
+        2560,
+        1600
+      ],
+      "bytes": 3139795
+    },
+    {
+      "file": "Runtime_AGV07_Focus.png",
+      "sha256": "0ba6ce74823decaf61d11ef988cb8f682d16f3a10baa3627f5f85fa48012d1e7",
+      "dimensions": [
+        2560,
+        1600
+      ],
+      "bytes": 2089070
+    },
+    {
+      "file": "ReferenceContext.png",
+      "sha256": "54242957ed8461c3c5a1328ef2b5ca8bcd2c69029326d2a1721add6869ffdd32",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "bytes": 1680243
+    },
+    {
+      "file": "Polish_Summary.png",
+      "sha256": "23cbf01d436555ede0f48f580107ea38eed76ffd4c47b863af6c1dc8624ab2a0",
+      "dimensions": [
+        1952,
+        1272
+      ],
+      "bytes": 1642012
+    }
+  ],
+  "performance_benchmark": false,
+  "accuracy": "Roads and building placements registered from user CADmapper DXF. Parcel and architectural detail from satellite references; not a cadastral survey."
+}

@@ -1,0 +1,109 @@
+{
+  "success": true,
+  "checks": [
+    {
+      "name": "initial_closed_single_poi",
+      "materials": [
+        "/Game/GHSZcoolSmartFactory/Roof/Materials/M_GHSRoof_Roof.M_GHSRoof_Roof",
+        "/Game/GHSZcoolSmartFactory/Roof/Materials/M_GHSRoof_Seams.M_GHSRoof_Seams",
+        "/Game/GHSZcoolSmartFactory/Roof/Materials/M_GHSRoof_Blue.M_GHSRoof_Blue",
+        "/Game/GHSZcoolSmartFactory/OfficeFacade/Materials/M_GHSFacade_Glass.M_GHSFacade_Glass",
+        "/Game/GHSZcoolSmartFactory/Roof/Materials/M_GHSRoof_Detail.M_GHSRoof_Detail"
+      ],
+      "equipment": 106,
+      "facilities": 56
+    },
+    {
+      "name": "poi_click_half_second_and_interaction_lock",
+      "game_seconds": 0.513322789222002
+    },
+    {
+      "name": "direct_roof_click"
+    },
+    {
+      "name": "page_select_opens_before_camera_and_selection"
+    },
+    {
+      "name": "latest_navigation_wins"
+    },
+    {
+      "name": "reset_cancels_pending_navigation"
+    },
+    {
+      "name": "page_focus_command_opens_before_flight"
+    },
+    {
+      "name": "region_preset_opens_before_flight"
+    },
+    {
+      "name": "traffic_motion_and_bounded_recycling",
+      "before": {
+        "ready": true,
+        "active": 16,
+        "capacity": 16,
+        "peak_active": 16,
+        "route_count": 6,
+        "component_count": 4,
+        "completed": 0,
+        "spawned": 16,
+        "fixed_instances": 16,
+        "collision": false
+      },
+      "after": {
+        "ready": true,
+        "active": 15,
+        "capacity": 16,
+        "peak_active": 16,
+        "route_count": 6,
+        "component_count": 4,
+        "completed": 2,
+        "spawned": 17,
+        "fixed_instances": 16,
+        "collision": false
+      }
+    },
+    {
+      "name": "materials_business_ids_and_saved_map_preserved"
+    }
+  ],
+  "captures": [
+    {
+      "name": "01_Closed_Overview",
+      "path": "D:\\UEPro\\Test\\Saved\\RoofTraffic\\01_Closed_Overview.png",
+      "sha256": "18b11d1a99f0bd2de79d1684b079b063fb7abbdd09eba99b852300d51516822e"
+    },
+    {
+      "name": "03_Open_Interior",
+      "path": "D:\\UEPro\\Test\\Saved\\RoofTraffic\\03_Open_Interior.png",
+      "sha256": "8d3fe073144afcc6143d8862dbc8b14093fbdaec59c0ea717212ebc7e58d41e5"
+    },
+    {
+      "name": "04_AGV_Located",
+      "path": "D:\\UEPro\\Test\\Saved\\RoofTraffic\\04_AGV_Located.png",
+      "sha256": "f21469b0dd275dd97bad375e89589fc37e1fca8197932960192a634ac400d214"
+    },
+    {
+      "name": "02_Dissolve_Midpoint",
+      "path": "D:\\UEPro\\Test\\Saved\\RoofTraffic\\02_Dissolve_Midpoint.png",
+      "sha256": "264798762a519bda5cf9abde3c02aa4034bf966c188cafb7465769aea8e326df"
+    },
+    {
+      "name": "05_Closed_2560x1600",
+      "path": "D:\\UEPro\\Test\\Saved\\RoofTraffic\\05_Closed_2560x1600.png",
+      "sha256": "27f68aa702888b55d6ccf99d7c642949ffac32d5982d1999b91c34920e2ea41e"
+    },
+    {
+      "name": "06_Context_Edges",
+      "path": "D:\\UEPro\\Test\\Saved\\RoofTraffic\\06_Context_Edges.png",
+      "sha256": "7ff3a2365e1e62f8789f9ea48307f1c4aa18325fe8863536cda7d5eeeb0599be"
+    }
+  ],
+  "performance_benchmark": false,
+  "elapsed_seconds": 25.875,
+  "frame_sample_ms": {
+    "median": 9.907599538564682,
+    "p95": 16.661599278450012,
+    "count": 2260,
+    "note": "Shared-machine editor/offscreen sample; not independent-session streaming benchmark"
+  }
+}
