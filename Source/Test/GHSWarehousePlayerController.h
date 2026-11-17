@@ -1,0 +1,81 @@
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/PlayerController.h"
+#include "Misc/EngineVersionComparison.h"
+#include "GHSWarehousePlayerController.generated.h"
+
+class UGHSDockTruckHUDWidget;
+class UGHSTwinHUDWidget;
+class UGHSStreamingInputComponent;
+class UGHSWarehouseRoofComponent;
+class AGHSCampusTrafficActor;
+class UGHSStorageCapacityComponent;
+class UGHSOrderReplaySession;
+
+UENUM(BlueprintType)
+enum class EGHSWarehouseDragMode : uint8 { None, Orbit, Pan };
+
+UCLASS(Blueprintable)
+class TEST_API AGHSWarehousePlayerController : public APlayerController
+{
+    GENERATED_BODY()
+public:
+    AGHSWarehousePlayerController();
+#if UE_VERSION_OLDER_THAN(5, 6, 0)
+    virtual bool InputKey(const FInputKeyParams& Params) override;
+#else
+    // Keep the engine's legacy forwarding overload accessible to existing callers.
+    using Super::InputKey;
+    virtual bool InputKey(const FInputKeyEventArgs& Params) override;
+#endif
+    virtual void PlayerTick(float DeltaSeconds) override;
+    virtual void FlushPressedKeys() override;
+    virtual bool ShouldFlushKeysWhenViewportFocusChanges() const override { return true; }
+    UPROPERTY(BlueprintReadOnly, Category="Warehouse Camera")
+    EGHSWarehouseDragMode DragMode = EGHSWarehouseDragMode::None;
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="Warehouse Camera", meta=(ClampMin="0", ClampMax="12"))
+    float DragThresholdPixels = 3.0f;
+    UFUNCTION(BlueprintCallable, Category="Warehouse Camera")
+    void CancelCameraDrag();
+    /** Grab the ground under the visible cursor using the camera plugin. */
+    UFUNCTION(BlueprintCallable, Category="Warehouse Camera")
+    bool BeginMapDrag();
+    /** Validate the live cursor/ray before the plugin updates its ground anchor. */
+    bool HasValidMapDragCursor() const;
+    UPROPERTY(BlueprintReadOnly, Transient, Category="Dock Truck HUD")
+    TObjectPtr<UGHSDockTruckHUDWidget> TruckHUDWidget;
+    UPROPERTY(BlueprintReadOnly, Transient, Category="Warehouse Twin")
+    TObjectPtr<UGHSTwinHUDWidget> TwinHUDWidget;
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Warehouse Twin")
+    TObjectPtr<UGHSWarehouseRoofComponent> WarehouseRoof;
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Warehouse Twin")
+    TObjectPtr<UGHSStorageCapacityComponent> StorageCapacity;
+    UPROPERTY(BlueprintReadOnly, Transient, Category="Warehouse Twin")
+    TObjectPtr<AGHSCampusTrafficActor> CampusTraffic;
+    UPROPERTY(VisibleAnywhere,BlueprintReadOnly,Category="Warehouse Replay")
+    TObjectPtr<UGHSOrderReplaySession> OrderReplay;
+    void SendSearchResponse(const FString& Json);
+    /** Also used when a warehouse becomes visible as a streamed destination. */
+    void InitializeWarehouseExperience(bool bEnableTraffic=true,bool bRoofInspectionOnly=false,const FString& WarehouseTitle=TEXT("GHS · 主仓库"));
+    void ShutdownWarehouseExperience();
+protected:
+    virtual void BeginPlay() override;
+    virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+    virtual void OnUnPossess() override;
+private:
+    bool bMPRExperiencePending=false;
+    UFUNCTION() void HandleStreamingInput(const FString& Descriptor);
+    UPROPERTY(Transient) TObjectPtr<UGHSStreamingInputComponent> SearchStreamingInput;
+    void ConsumeOrbitMotion();
+    void FinishTwinOrbitRelease();
+    FVector2D PendingMouse = FVector2D::ZeroVector;
+    FVector2D DragTravel = FVector2D::ZeroVector;
+    bool bPastDragThreshold = false;
+    bool bTwinOrbitReleasePending = false;
+    bool bManualDoubleClickCapture = false;
+    FIntPoint DoubleClickCursorPosition = FIntPoint::ZeroValue;
+    FIntPoint MapDragViewportSize = FIntPoint::ZeroValue;
+    FVector2D TwinPressPosition = FVector2D::ZeroVector;
+    TSharedPtr<SWidget> TwinViewportWidget;
+};

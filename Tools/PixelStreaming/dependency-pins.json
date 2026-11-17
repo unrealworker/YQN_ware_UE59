@@ -1,0 +1,50 @@
+{
+  "packages": [
+    {
+      "name": "@epicgames-ps/lib-pixelstreamingfrontend-ue5.8",
+      "integrity": "sha512-8vZQOcE2YQ2SG2h95KC250lxRLijtIKMnXhFyDRZKwCc0gSuhXp1wRh4cydJMGJZut9pZJluV9B0BSnEswo4Jg==",
+      "archive": "epicgames-ps-lib-pixelstreamingfrontend-ue5.8-0.1.3.tgz",
+      "version": "0.1.3",
+      "url": "https://registry.npmjs.org/@epicgames-ps/lib-pixelstreamingfrontend-ue5.8/-/lib-pixelstreamingfrontend-ue5.8-0.1.3.tgz"
+    },
+    {
+      "name": "@epicgames-ps/lib-pixelstreamingcommon-ue5.8",
+      "integrity": "sha512-Za+1lC0MotucgSRBkCnRx4KSGXJAe2E6AcdJIGsG1SKa51sOIYtvACwIQ31C5SF6fUZiHwBk06JixfHmRkmhxA==",
+      "archive": "epicgames-ps-lib-pixelstreamingcommon-ue5.8-0.1.0.tgz",
+      "version": "0.1.0",
+      "url": "https://registry.npmjs.org/@epicgames-ps/lib-pixelstreamingcommon-ue5.8/-/lib-pixelstreamingcommon-ue5.8-0.1.0.tgz"
+    },
+    {
+      "name": "@protobuf-ts/runtime",
+      "integrity": "sha512-KuDaT1IfHkugM2pyz+FwiY80ejWrkH1pAtOBOZFuR6SXEFTsnb/jiQWQ1rCIrcKx2BtyxnxW6BWwsVSA/Ie+WQ==",
+      "archive": "protobuf-ts-runtime-2.11.1.tgz",
+      "version": "2.11.1",
+      "url": "https://registry.npmjs.org/@protobuf-ts/runtime/-/runtime-2.11.1.tgz"
+    },
+    {
+      "name": "@esbuild/win32-x64",
+      "integrity": "sha512-5ebpxr3nWMzrL/rnUI755Jkuee0bHL/Gq0WTF9lvcpv73wAp5eu8MfBUgWK9bhWvZjj7yX8etf/8tI8Ney695g==",
+      "archive": "esbuild-win32-x64-0.28.2.tgz",
+      "version": "0.28.2",
+      "url": "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.28.2.tgz"
+    },
+    {
+      "name": "ws",
+      "integrity": "sha512-PEIGCY5tSlUt50cqyMXfCzX+oOPqN0vuGqWzbcJ2xvnkzkq46oOpz7dQaTDBdfICb4N14+GARUDw2XV2N4tvzg==",
+      "archive": "ws-8.18.3.tgz",
+      "version": "8.18.3",
+      "url": "https://registry.npmjs.org/ws/-/ws-8.18.3.tgz"
+    },
+    {
+      "name": "sdp",
+      "integrity": "sha512-lwsAIzOPlH8/7IIjjz3K0zYBk7aBVVcvjMwt3M4fLxpjMYyy7i3I97SLHebgn4YBjirkzfp3RvRDWSKsh/+WFw==",
+      "archive": "sdp-3.2.1.tgz",
+      "version": "3.2.1",
+      "url": "https://registry.npmjs.org/sdp/-/sdp-3.2.1.tgz"
+    }
+  ],
+  "frontendBranch": "UE5.8",
+  "engine": "Unreal Engine 5.8.4 PixelStreaming2",
+  "frontendSource": "https://github.com/EpicGamesExt/PixelStreamingInfrastructure",
+  "frontendGitHead": "4c1fd4830cde8c6dd441b9c72ec8864b2f7f29bd"
+}

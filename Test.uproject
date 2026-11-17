@@ -1,0 +1,89 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "5.9",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "Test",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "GHSDisplayBootstrap",
+			"Type": "Runtime",
+			"LoadingPhase": "PostSplashScreen"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "PythonScriptPlugin",
+			"Enabled": true
+		},
+		{
+			"Name": "PixelStreaming",
+			"Enabled": false
+		},
+		{
+			"Name": "PixelStreaming2",
+			"Enabled": true,
+			"PlatformDenyList": ["Wasm"]
+		},
+		{
+			"Name": "UniversalCameraPlugin",
+			"Enabled": true
+		},
+		{
+			"Name": "ModelingToolsEditorMode",
+			"Enabled": true,
+			"TargetAllowList": [
+				"Editor"
+			]
+		},
+		{
+			"Name": "UE_MCP_Bridge",
+			"Enabled": false
+		},
+		{
+			"Name": "ModelContextProtocol",
+			"Enabled": true,
+			"TargetAllowList": ["Editor"]
+		},
+		{
+			"Name": "AllToolsets",
+			"Enabled": true,
+			"TargetAllowList": ["Editor"]
+		},
+		{
+			"Name": "Niagara",
+			"Enabled": true
+		},
+		{
+			"Name": "PCG",
+			"Enabled": true
+		},
+		{
+			"Name": "EnhancedInput",
+			"Enabled": true
+		},
+		{
+			"Name": "GameplayAbilities",
+			"Enabled": true
+		},
+		{
+			"Name": "ToolsetRegistry",
+			"Enabled": true,
+			"TargetAllowList": ["Editor"]
+		},
+		{
+			"Name": "EditorToolset",
+			"Enabled": true,
+			"TargetAllowList": ["Editor"]
+		},
+		{
+			"Name": "StateTreeToolset",
+			"Enabled": true,
+			"TargetAllowList": ["Editor"]
+		}
+	]
+}

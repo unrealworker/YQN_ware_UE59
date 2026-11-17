@@ -1,0 +1,147 @@
+#if WITH_DEV_AUTOMATION_TESTS
+#include "../GHSStreamingRuntime.h"
+#include "HAL/IConsoleManager.h"
+#include "GHSAutomationTestFlags.h"
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FGHSStreamingValidBudgetTest,"GHS.Streaming.Runtime.AcceptsFiniteOrderedBudget",GHSAutomationTests::ApplicationContextMask|EAutomationTestFlags::ProductFilter)
+bool FGHSStreamingValidBudgetTest::RunTest(const FString&)
+{
+    GHSStreamingRuntime::FBudget Budget; FString Error;
+    TestTrue(TEXT("Accept launcher budget"),GHSStreamingRuntime::ParseBudget(TEXT("{\"version\":1,\"sequence\":7,\"fps\":42,\"minBitrateMbps\":8,\"startBitrateMbps\":20,\"maxBitrateMbps\":50}"),Budget,Error));
+    TestEqual(TEXT("Acknowledged sequence"),Budget.Sequence,int64(7));
+    TestEqual(TEXT("Frame budget"),Budget.FPS,42);
+    TestEqual(TEXT("Min bitrate"),Budget.MinBitrateMbps,8.);
+    TestEqual(TEXT("Max bitrate"),Budget.MaxBitrateMbps,50.);
+    return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FGHSStreamingRejectBudgetTest,"GHS.Streaming.Runtime.RejectsCommandsAndInvalidNumbersWithoutMutation",GHSAutomationTests::ApplicationContextMask|EAutomationTestFlags::ProductFilter)
+bool FGHSStreamingRejectBudgetTest::RunTest(const FString&)
+{
+    const FString Base=TEXT("{\"version\":1,\"sequence\":1,\"fps\":60,\"minBitrateMbps\":8,\"maxBitrateMbps\":50");
+    TArray<FString> Invalid={Base+TEXT(",\"command\":\"quit\"}"),Base+TEXT(",\"startBitrateMbps\":100}"),TEXT("[]"),TEXT("{}"),TEXT("{\"version\":1"),Base+TEXT(",\"fps\":1e100}")};
+    Invalid.Add(Base.Replace(TEXT("\"fps\":60"),TEXT("\"fps\":-1"))+TEXT("}"));
+    Invalid.Add(Base.Replace(TEXT("\"fps\":60"),TEXT("\"fps\":60.5"))+TEXT("}"));
+    Invalid.Add(Base.Replace(TEXT("\"sequence\":1"),TEXT("\"sequence\":0"))+TEXT("}"));
+    Invalid.Add(Base.Replace(TEXT("\"sequence\":1"),TEXT("\"sequence\":9007199254740992"))+TEXT("}"));
+    Invalid.Add(Base.Replace(TEXT("\"minBitrateMbps\":8"),TEXT("\"minBitrateMbps\":80"))+TEXT("}"));
+    Invalid.Add(Base.Replace(TEXT("\"version\":1"),TEXT("\"version\":2"))+TEXT("}"));
+    Invalid.Add(Base.Replace(TEXT("\"fps\":60"),TEXT("\"fps\":\"60\""))+TEXT("}"));
+    for(const FString& Json:Invalid)
+    {
+        GHSStreamingRuntime::FBudget Budget; Budget.FPS=37; Budget.Sequence=9; FString Error;
+        TestFalse(TEXT("Reject invalid or unrecognized input"),GHSStreamingRuntime::ParseBudget(Json,Budget,Error));
+        TestEqual(TEXT("Preserve prior frame limit"),Budget.FPS,37);
+        TestEqual(TEXT("Preserve prior sequence"),Budget.Sequence,int64(9));
+        TestFalse(TEXT("Explain rejection"),Error.IsEmpty());
+    }
+    return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FGHSStreamingLiveBudgetTest,"GHS.Streaming.Runtime.AppliesLiveFrameBudgetAndRejectsReplay",GHSAutomationTests::ApplicationContextMask|EAutomationTestFlags::ProductFilter)
+bool FGHSStreamingLiveBudgetTest::RunTest(const FString&)
+{
+    const TCHAR* Names[]={TEXT("t.MaxFPS"),TEXT("PixelStreaming2.WebRTC.Fps"),TEXT("PixelStreaming2.WebRTC.MinBitrate"),TEXT("PixelStreaming2.WebRTC.MaxBitrate")};
+    TArray<FString> Previous;
+    for(const TCHAR* Name:Names)
+    {
+        auto* Var=IConsoleManager::Get().FindConsoleVariable(Name);
+        if(!TestNotNull(Name,Var)) return false;
+        Previous.Add(Var->GetString());
+    }
+    GHSStreamingRuntime::FBudget Budget; Budget.Sequence=1; Budget.FPS=37; Budget.MinBitrateMbps=4; Budget.MaxBitrateMbps=44;
+    int64 Sequence=0; FString Error;
+    IConsoleManager::Get().FindConsoleVariable(Names[1])->Set(60,ECVF_SetByConsole);
+    TestTrue(TEXT("Apply without restarting UE"),GHSStreamingRuntime::ApplyBudget(Budget,Sequence,Error));
+    TestEqual(TEXT("Rendering workload throttled"),IConsoleManager::Get().FindConsoleVariable(Names[0])->GetInt(),37);
+    TestEqual(TEXT("Negotiated RTP ceiling must remain at full capacity"),IConsoleManager::Get().FindConsoleVariable(Names[1])->GetInt(),60);
+    TestEqual(TEXT("Acknowledged only after apply"),Sequence,int64(1));
+    Budget.FPS=12;
+    TestFalse(TEXT("An old sequence cannot replace the live budget"),GHSStreamingRuntime::ApplyBudget(Budget,Sequence,Error));
+    TestEqual(TEXT("Replay leaves live rendering unchanged"),IConsoleManager::Get().FindConsoleVariable(Names[0])->GetInt(),37);
+    Budget.Sequence=2; Budget.FPS=60;
+    TestTrue(TEXT("Disconnect can immediately restore frame capacity"),GHSStreamingRuntime::ApplyBudget(Budget,Sequence,Error));
+    TestEqual(TEXT("Restored FPS"),IConsoleManager::Get().FindConsoleVariable(Names[0])->GetInt(),60);
+    TestEqual(TEXT("Existing RTP stream permits full restored capacity"),IConsoleManager::Get().FindConsoleVariable(Names[1])->GetInt(),60);
+    Budget.Sequence=3; Budget.FPS=0;
+    TestTrue(TEXT("Explicit zero removes the rendering cap"),GHSStreamingRuntime::ApplyBudget(Budget,Sequence,Error));
+    TestEqual(TEXT("Unlimited is not an arbitrary large cap"),IConsoleManager::Get().FindConsoleVariable(Names[0])->GetInt(),0);
+    for(int32 Index=0;Index<UE_ARRAY_COUNT(Names);++Index) IConsoleManager::Get().FindConsoleVariable(Names[Index])->Set(*Previous[Index],ECVF_SetByConsole);
+    return true;
+}
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FGHSStreamingUncappedBudgetTest,"GHS.Streaming.Runtime.AcceptsExplicitUncappedBudget",GHSAutomationTests::ApplicationContextMask|EAutomationTestFlags::ProductFilter)
+bool FGHSStreamingUncappedBudgetTest::RunTest(const FString&)
+{
+    GHSStreamingRuntime::FBudget Budget; FString Error;
+    TestTrue(TEXT("Zero FPS is a supported no-cap mode"),GHSStreamingRuntime::ParseBudget(TEXT("{\"version\":1,\"sequence\":1,\"fps\":0,\"minBitrateMbps\":1,\"startBitrateMbps\":8,\"maxBitrateMbps\":24}"),Budget,Error));
+    TestEqual(TEXT("Keep the no-cap sentinel"),Budget.FPS,0);
+    return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FGHSPS2OptionsTest,"GHS.Streaming.PixelStreaming2.ValidatesLauncherOptions",GHSAutomationTests::ApplicationContextMask|EAutomationTestFlags::ProductFilter)
+bool FGHSPS2OptionsTest::RunTest(const FString&)
+{
+    GHSStreamingRuntime::FStartupOptions Options; FString Error;
+    TestTrue(TEXT("Explicit hardware and 60 real FPS"),GHSStreamingRuntime::ParseStartupOptions(TEXT("-PixelStreamingEncoder=NVIDIA -FixedFPS=60"),Options,Error));
+    TestEqual(TEXT("Hardware policy retained"),Options.Encoder,FString(TEXT("NVIDIA")));
+    TestEqual(TEXT("Fixed target retained"),Options.FixedFPS,60);
+    TestTrue(TEXT("Auto without fixed target"),GHSStreamingRuntime::ParseStartupOptions(TEXT("-PixelStreamingEncoder=Auto"),Options,Error));
+    TestEqual(TEXT("No implicit fixed target"),Options.FixedFPS,0);
+    const TCHAR* Bad[]={TEXT("-FixedFPS=0"),TEXT("-FixedFPS=60.5"),TEXT("-FixedFPS=abc"),TEXT("-FixedFPS=121"),TEXT("-PixelStreamingEncoder=unknown"),TEXT("-FixedFPS=60 -UseFixedTimeStep"),TEXT("-FixedFPS=60 -Deterministic")};
+    for(const TCHAR* Args:Bad)
+    {
+        Options.FixedFPS=37;
+        TestFalse(TEXT("Invalid settings do not silently fall back"),GHSStreamingRuntime::ParseStartupOptions(Args,Options,Error));
+        TestEqual(TEXT("Invalid settings do not mutate"),Options.FixedFPS,37);
+        TestFalse(TEXT("Explains rejection"),Error.IsEmpty());
+    }
+    return true;
+}
+
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FGHSPS2NvidiaPolicyTest,"GHS.Streaming.PixelStreaming2.RejectsEarlySoftwareFallback",GHSAutomationTests::ApplicationContextMask|EAutomationTestFlags::ProductFilter)
+bool FGHSPS2NvidiaPolicyTest::RunTest(const FString&)
+{
+    FString Error;
+    TestTrue(TEXT("NVIDIA H264 remains valid"),GHSStreamingRuntime::ValidateNvidiaPolicy(true,true,TEXT("H264"),false,Error));
+    TestTrue(TEXT("NVIDIA AV1 remains valid when the factory retained it"),GHSStreamingRuntime::ValidateNvidiaPolicy(true,true,TEXT("AV1"),false,Error));
+    TestFalse(TEXT("A valid NVENC DLL must not hide an earlier VP8 fallback"),GHSStreamingRuntime::ValidateNvidiaPolicy(true,true,TEXT("VP8"),false,Error));
+    TestFalse(TEXT("Explain the early fallback"),Error.IsEmpty());
+    TestFalse(TEXT("Missing RHI hardware is rejected"),GHSStreamingRuntime::ValidateNvidiaPolicy(false,true,TEXT("H264"),false,Error));
+    TestFalse(TEXT("Unavailable NVENC API is rejected"),GHSStreamingRuntime::ValidateNvidiaPolicy(true,false,TEXT("H264"),false,Error));
+    TestFalse(TEXT("Software codec negotiation cannot bypass the policy"),GHSStreamingRuntime::ValidateNvidiaPolicy(true,true,TEXT("H264"),true,Error));
+    return true;
+}
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FGHSStandbyBudgetParsingTest,"GHS.Streaming.Runtime.ParsesExplicitStandbyBudget",GHSAutomationTests::ApplicationContextMask|EAutomationTestFlags::ProductFilter)
+bool FGHSStandbyBudgetParsingTest::RunTest(const FString&)
+{
+    GHSStreamingRuntime::FBudget Budget; FString Error;
+    TestTrue(TEXT("Accept explicit low-load standby budget"),GHSStreamingRuntime::ParseBudget(TEXT("{\"version\":1,\"sequence\":1,\"fps\":5,\"mode\":\"standby\",\"minBitrateMbps\":1,\"maxBitrateMbps\":24}"),Budget,Error));
+    TestEqual(TEXT("Preserve standby mode"),Budget.Mode,FString(TEXT("standby")));
+    TestTrue(TEXT("Accept active restore budget"),GHSStreamingRuntime::ParseBudget(TEXT("{\"version\":1,\"sequence\":2,\"fps\":30,\"mode\":\"active\",\"minBitrateMbps\":1,\"maxBitrateMbps\":24}"),Budget,Error));
+    TestFalse(TEXT("Reject unrecognized mode"),GHSStreamingRuntime::ParseBudget(TEXT("{\"version\":1,\"sequence\":3,\"fps\":5,\"mode\":\"paused\",\"minBitrateMbps\":1,\"maxBitrateMbps\":24}"),Budget,Error));
+    return true;
+}
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FGHSStandbyLifecyclePolicyTest,"GHS.Streaming.Runtime.EnforcesOneWayStandbyLease",GHSAutomationTests::ApplicationContextMask|EAutomationTestFlags::ProductFilter)
+bool FGHSStandbyLifecyclePolicyTest::RunTest(const FString&)
+{
+    using namespace GHSStreamingRuntime;
+    FBudget Budget; Budget.Sequence=1; Budget.FPS=5; Budget.Mode=TEXT("standby");
+    FStartupOptions Options; Options.FixedFPS=30; FString Error;
+    TestFalse(TEXT("Ordinary fixed FPS process cannot idle"),ValidateBudgetTransition(Budget,Options,false,Error));
+    TestTrue(TEXT("Explicit startup permission parses"),ParseStartupOptions(TEXT("-FixedFPS=30 -GHSStandbyCapable"),Options,Error));
+    TestTrue(TEXT("Pristine permitted process can idle"),ValidateBudgetTransition(Budget,Options,false,Error));
+    Budget.FPS=6;
+    TestFalse(TEXT("Standby is not an arbitrary override of fixed target"),ValidateBudgetTransition(Budget,Options,false,Error));
+    Budget.Mode=TEXT("warming"); Budget.FPS=30;
+    TestTrue(TEXT("Warmup retains original FPS"),ValidateBudgetTransition(Budget,Options,false,Error));
+    Budget.Mode=TEXT("active"); Budget.FPS=5;
+    TestFalse(TEXT("Active lease cannot remain at idle FPS"),ValidateBudgetTransition(Budget,Options,false,Error));
+    Budget.FPS=30;
+    TestTrue(TEXT("Active lease restores configured FPS"),ValidateBudgetTransition(Budget,Options,false,Error));
+    Budget.Mode=TEXT("standby"); Budget.FPS=5;
+    TestFalse(TEXT("Leased state cannot be reused for another viewer"),ValidateBudgetTransition(Budget,Options,true,Error));
+    Budget.Mode=TEXT("warming"); Budget.FPS=30;
+    TestFalse(TEXT("Leased state cannot re-enter warmup"),ValidateBudgetTransition(Budget,Options,true,Error));
+    return true;
+}
+#endif

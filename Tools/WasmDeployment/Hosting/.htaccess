@@ -1,0 +1,49 @@
+# Reference only: derived from UE's Wasm static-host template; not tested on a live Apache host.
+# Apache 2.4: mod_headers, mod_mime, mod_rewrite, mod_env, mod_dir. Copy into Wasm, use that as DocumentRoot.
+# AllowOverride FileInfo Indexes Options is required. Configure the trusted TLS certificate in the HTTPS VirtualHost.
+Options -Indexes -MultiViews
+DirectoryIndex index.html
+AddType application/wasm .wasm
+AddType text/javascript .js .mjs
+AddType application/json .json
+AddType application/manifest+json .webmanifest
+AddType text/html .html .htm
+AddType text/css .css
+AddType text/plain .txt .wgsl
+AddType image/png .png
+AddType image/jpeg .jpg .jpeg
+AddType image/gif .gif
+AddType image/webp .webp
+AddType image/svg+xml .svg
+AddType image/x-icon .ico
+AddType font/ttf .ttf
+AddType font/otf .otf
+AddType font/woff .woff
+AddType font/woff2 .woff2
+AddType application/octet-stream .bin .ini .stinfo .ushaderbytecode .pak .ucas .utoc
+
+# mod_mime combines extensions: style.css.br stays text/css, fonts.ttf.br stays font/ttf.
+# Remove any inherited .br media type so it cannot replace the original file's MIME type.
+RemoveType .br
+AddEncoding br .br
+Header always set Cross-Origin-Opener-Policy "same-origin"
+Header always set Cross-Origin-Embedder-Policy "require-corp"
+Header always set Cross-Origin-Resource-Policy "same-origin"
+Header always set Cache-Control "no-cache"
+Header always set X-Content-Type-Options "nosniff"
+Header merge Vary Accept-Encoding
+SetEnv no-gzip 1
+SetEnv no-brotli 1
+
+RewriteEngine On
+# Do not expose temporary/configuration files or accept direct .br URLs; only internal negotiation uses .br.
+RewriteRule "(^|/)\.|(^|/)_headers$|\.tmp$" "-" [R=404,L]
+RewriteCond %{THE_REQUEST} "\s/+[^?\s]*\.br(?:[?\s])" [NC]
+RewriteRule "\.br$" "-" [R=404,L]
+# Range requests always read the uncompressed source bytes. Respect an explicit br;q=0 refusal.
+RewriteCond %{HTTP:Range} ^$
+RewriteCond %{HTTP:Accept-Encoding} "(^|,)[\t ]*br([;,\t ]|$)" [NC]
+RewriteCond %{HTTP:Accept-Encoding} "!(^|,)[\t ]*br[\t ]*;[\t ]*q=0(\.0*)?[\t ]*(,|$)" [NC]
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteCond %{REQUEST_FILENAME}.br -f
+RewriteRule ^(.+)$ $1.br [L]

@@ -1,0 +1,335 @@
+/* Epic UE5.8 owns WebRTC, input serialization, touch and keyboard handling. */
+(() => {
+  'use strict';
+  const { Config, PixelStreaming, Flags, NumericParameters } = window['lib-pixelstreamingfrontend'];
+  const $ = id => document.getElementById(id);
+  let stream, sceneSearch, terminal = false, firstFrame = false, stage = 0, deadline, elapsedTimer, elapsedStart, sessionToken, maxViewers = 5, reconnectTimer, reconnectAttempts = 0, queuePhase = 'none';
+  const quality = window.GHSStreamQuality, meter = quality.createMeter();
+  const appInitNavigationMs = performance.now();
+  const metrics = { state: 'connecting', firstFrame: false, width: 0, height: 0, fps: null, bitrateMbps: null, rttMs: null, decodedFrames: 0, mode: null, instanceId: null, bufferMs: null, decodeMs: null, lossPercent: null, networkPath: '协商中' };
+  const startupStages = ['sessionRequest', 'sessionReady', 'signallingOpen', 'admission', 'queued', 'activating', 'ready', 'streamerList', 'subscribe', 'offer', 'answer', 'localIce', 'remoteIce', 'iceChecking', 'iceConnected', 'videoTrack', 'dataChannelOpen', 'firstDecoded', 'firstDisplayed'];
+  let attempt, attemptSequence = 0, frameWatch, peerWatch, latestStatsSource, latestDecodedFrames = 0;
+  function cancelFrameWatch() {
+    if (frameWatch?.kind === 'animation') window.cancelAnimationFrame?.(frameWatch.id);
+    else if (frameWatch) frameWatch.video.cancelVideoFrameCallback?.(frameWatch.id);
+    frameWatch = null;
+  }
+  function endAttempt() {
+    cancelFrameWatch();
+    if (attempt?.active) { attempt.active = false; attempt.endedAt = performance.now(); }
+  }
+  function beginAttempt(reason) {
+    endAttempt();
+    attempt = { id: ++attemptSequence, reason, startedAt: performance.now(), active: true, stageMs: Object.fromEntries(startupStages.map(key => [key, null])), server: { warmHit: null, instanceStartupMs: null, standbyReadyAgeMs: null, admissionToLeaseMs: null }, firstDecodedEvidence: null, firstDisplayedEvidence: null, frameSignalSent: false, decodedSource: latestStatsSource, decodedBaseline: latestDecodedFrames };
+    firstFrame = false; metrics.firstFrame = false; metrics.firstFrameMs = null; meter.reset();
+  }
+  function stamp(name, observedAttempt = attempt) {
+    if (!terminal && observedAttempt?.active && observedAttempt === attempt && observedAttempt.stageMs[name] === null) observedAttempt.stageMs[name] = Math.max(0, Math.round(performance.now() - observedAttempt.startedAt));
+  }
+  function observeDecoded(evidence) {
+    if (terminal || !attempt?.active || attempt.stageMs.firstDecoded !== null) return;
+    stamp('firstDecoded'); attempt.firstDecodedEvidence = evidence;
+  }
+  function startupSnapshot() {
+    if (!attempt) return null;
+    const stageMs = Object.freeze({ ...attempt.stageMs });
+    const interval = (from, to) => stageMs[from] !== null && stageMs[to] !== null ? stageMs[to] - stageMs[from] : null;
+    return Object.freeze({ attemptId: attempt.id, reason: attempt.reason, elapsedMs: stageMs.firstDisplayed ?? Math.max(0, Math.round((attempt.endedAt ?? performance.now()) - attempt.startedAt)), navigationTotalMs: Math.round(stageMs.firstDisplayed !== null ? attempt.startedAt + stageMs.firstDisplayed : attempt.endedAt ?? performance.now()), appInitNavigationMs: Math.round(appInitNavigationMs), attemptStartNavigationMs: Math.round(attempt.startedAt), stageMs, firstDecodedEvidence: attempt.firstDecodedEvidence, firstDisplayedEvidence: attempt.firstDisplayedEvidence, frameSignalSent: attempt.frameSignalSent,
+      intervalMs: Object.freeze({ session: interval('sessionRequest', 'sessionReady'), admissionToReady: interval('admission', 'ready'), readyToSubscribe: interval('ready', 'subscribe'), subscribeToOffer: interval('subscribe', 'offer'), offerToAnswer: interval('offer', 'answer'), answerToIce: interval('answer', 'iceConnected'), iceToFirstDecoded: interval('iceConnected', 'firstDecoded'), iceToFirstDisplayed: interval('iceConnected', 'firstDisplayed'), readyToFirstDisplayed: interval('ready', 'firstDisplayed') }),
+      server: Object.freeze({ ...attempt.server }) });
+  }
+  function watchPeer() {
+    const peer = stream?.webRtcController?.peerConnectionController?.peerConnection;
+    if (!peer?.addEventListener || (peerWatch?.peer === peer && peerWatch.attempt === attempt)) return;
+    if (peerWatch) { peerWatch.peer.removeEventListener('iceconnectionstatechange', peerWatch.onIce); peerWatch.peer.removeEventListener('track', peerWatch.onTrack); }
+    const observedAttempt = attempt;
+    const onIce = () => { if (peer.iceConnectionState === 'checking') stamp('iceChecking', observedAttempt); if (['connected', 'completed'].includes(peer.iceConnectionState)) stamp('iceConnected', observedAttempt); };
+    const onTrack = event => { if (event.track?.kind === 'video') stamp('videoTrack', observedAttempt); };
+    peerWatch = { peer, attempt, onIce, onTrack }; peer.addEventListener('iceconnectionstatechange', onIce); peer.addEventListener('track', onTrack); onIce();
+  }
+  function ensureMediaAttempt() { if (!terminal && !attempt?.active) { beginAttempt('media-recovery'); watchVideo(); } }
+  function suspendMedia() {
+    endPan(); sceneSearch?.suspend(); meter.reset(); endAttempt();
+    if (terminal) return;
+    const wasPlaying = firstFrame; firstFrame = false; metrics.firstFrame = false;
+    $('loading').hidden = false; document.body.classList.remove('playing'); stage = 0;
+    progress(1, '正在恢复连接', '网络暂时中断，正在恢复当前会话；场景状态暂时保留。', 'waiting');
+    if (wasPlaying) armDeadline();
+  }
+  let pan = null;
+  const videoRoot = $('video-root');
+  // Browser-level right-button gestures can run before a page receives input.
+  // Shift + left drag is an alternative using Epic's public input protocol.
+  function videoPoint(event, allowOutside = false) {
+    const video = videoRoot.querySelector('video');
+    if (!video || !video.videoWidth || !video.videoHeight) return null;
+    const rect = video.getBoundingClientRect();
+    const scale = Math.min(rect.width / video.videoWidth, rect.height / video.videoHeight);
+    const width = video.videoWidth * scale, height = video.videoHeight * scale;
+    if (width <= 0 || height <= 0) return null;
+    const left = rect.left + (rect.width - width) / 2, top = rect.top + (rect.height - height) / 2;
+    const x = (event.clientX - left) / width, y = (event.clientY - top) / height;
+    if (!allowOutside && (x < 0 || x > 1 || y < 0 || y > 1)) return null;
+    return { x: Math.max(0, Math.min(65535, Math.floor(x * 65536))), y: Math.max(0, Math.min(65535, Math.floor(y * 65536))), width, height };
+  }
+  function endPan(event) {
+    if (!pan) return;
+    const point = event && Number.isFinite(event.clientX) ? videoPoint(event, true) : pan.point;
+    stream?.toStreamerHandlers.get('MouseUp')?.([2, (point || pan.point).x, (point || pan.point).y]);
+    pan = null; videoRoot.classList.remove('panning');
+  }
+  const consumePan = event => { event.preventDefault(); event.stopImmediatePropagation(); };
+  for (const type of ['contextmenu', 'dragstart', 'selectstart', 'auxclick']) videoRoot.addEventListener(type, event => event.preventDefault(), { capture: true });
+  videoRoot.addEventListener('mousedown', event => {
+    if (event.button !== 0 || !event.shiftKey || !firstFrame || terminal || !stream) return;
+    const point = videoPoint(event);
+    if (!point || !stream.toStreamerHandlers.has('MouseDown')) return;
+    consumePan(event); videoRoot.focus({ preventScroll: true });
+    pan = { point, clientX: event.clientX, clientY: event.clientY };
+    videoRoot.classList.add('panning'); stream.toStreamerHandlers.get('MouseDown')([2, point.x, point.y]);
+  }, { capture: true });
+  window.addEventListener('mousemove', event => {
+    if (!pan) return;
+    consumePan(event);
+    if (!(event.buttons & 1)) { endPan(event); return; }
+    const point = videoPoint(event, true); if (!point) { endPan(); return; }
+    const delta = (value, size) => Math.max(-32768, Math.min(32767, Math.trunc(value * 65534 / size)));
+    stream.toStreamerHandlers.get('MouseMove')?.([point.x, point.y, delta(event.clientX - pan.clientX, point.width), delta(event.clientY - pan.clientY, point.height)]);
+    pan = { point, clientX: event.clientX, clientY: event.clientY };
+  }, { capture: true });
+  window.addEventListener('mouseup', event => { if (pan && event.button === 0) { consumePan(event); endPan(event); } }, { capture: true });
+  // Do not let Epic's enter/leave helpers reinterpret the physical left button
+  // as a second, unrelated drag while the alternative pan is active.
+  for (const type of ['mouseenter', 'mouseleave']) videoRoot.addEventListener(type, event => { if (pan) event.stopImmediatePropagation(); }, { capture: true });
+  window.addEventListener('blur', () => endPan());
+  document.addEventListener('visibilitychange', () => { if (document.hidden) endPan(); });
+  // Read-only inspection snapshot for support / real-browser verification.
+  Object.defineProperty(window, 'ghsStreamingStats', { get: () => Object.freeze({ ...metrics, startup: startupSnapshot() }) });
+  function progress(value, title, text, presentation = 'running') {
+    if (terminal || firstFrame) return;
+    document.querySelector('.card').dataset.state = presentation;
+    stage = Math.max(stage, Math.min(5, value)); $('connection-progress').value = stage; $('stage-title').textContent = title; $('stage-message').textContent = text;
+    $('stage-count').textContent = `阶段 ${Math.max(1, stage)} / 5`;
+    document.querySelectorAll('.stages li').forEach((item, i) => { item.dataset.state = i + 1 < stage ? 'done' : i + 1 === Math.max(1, stage) ? 'active' : 'waiting'; });
+    document.querySelectorAll('.stage-segments span').forEach((item, i) => { item.dataset.state = i + 1 < stage ? 'done' : i + 1 === Math.max(1, stage) ? 'active' : 'waiting'; });
+    $('connection-state').textContent = title; metrics.state = title;
+  }
+  function halt(title, text, evicted = false, presentation = 'fault') {
+    endPan(); sceneSearch?.suspend(); endAttempt();
+    terminal = true; firstFrame = false; metrics.firstFrame = false; document.body.classList.remove('playing'); clearTimeout(deadline); clearTimeout(reconnectTimer); clearTimeout(elapsedTimer); metrics.state = evicted ? 'evicted' : 'stopped';
+    if (evicted) sessionStorage.setItem('ghsEvicted', 'true');
+    if (stream) { stream.config.setNumericSetting(NumericParameters.MaxReconnectAttempts, 0); stream.config.setFlagEnabled(Flags.WaitForStreamer, false); stream.disconnect(); }
+    // Presentation only: retain the existing terminal, eviction and retry policy.
+    const card = document.querySelector('.card'); card.classList.add('error'); card.dataset.state = evicted ? 'exited' : presentation;
+    $('loading').hidden = false; $('allow-play').hidden = true; $('stage-title').textContent = title; $('stage-message').textContent = text; $('connection-state').textContent = title; $('retry').hidden = false;
+  }
+  function armDeadline() {
+    clearTimeout(deadline); clearTimeout(elapsedTimer); elapsedStart = performance.now();
+    const tick = () => { $('elapsed-time').textContent = `已等待 ${String(Math.floor((performance.now() - elapsedStart) / 1000)).padStart(2, '0')} 秒`; if (!terminal && !firstFrame) elapsedTimer = setTimeout(tick, 1000); }; tick();
+    deadline = setTimeout(() => halt('连接超时', `视频连接等待超过 120 秒，尚未收到首帧（停留阶段 ${Math.max(1, stage)} / 5）。请检查启动器日志、UE 进程和网络连接，再点击重新进入。`), 120000);
+  }
+  function markFrame(video, observedAttempt, evidence = 'video-frame-callback') {
+    if (terminal || !observedAttempt?.active || observedAttempt !== attempt || firstFrame || video.videoWidth === 0 || video.readyState < 2 || videoRoot.querySelector('video') !== video) return;
+    if (observedAttempt.reason !== 'session' && observedAttempt.stageMs.iceConnected === null) return;
+    observeDecoded(evidence === 'video-frame-callback' ? evidence : 'playback-progress'); stamp('firstDisplayed', observedAttempt); attempt.firstDisplayedEvidence = evidence;
+    firstFrame = true; reconnectAttempts = 0; metrics.firstFrame = true; metrics.state = 'playing'; metrics.firstFrameMs = attempt.stageMs.firstDisplayed; clearTimeout(deadline); clearTimeout(elapsedTimer);
+    $('connection-progress').value = 5; $('stage-count').textContent = '阶段 5 / 5'; $('loading').hidden = true; $('allow-play').hidden = true; document.body.classList.add('playing'); $('connection-state').textContent = '已连接'; updateDimensions(video); $('video-root').focus({ preventScroll: true }); sceneSearch?.ready();
+    // The authenticated connection is the identity. This is only a readiness
+    // signal; the service uses its own receive clock before replenishing a spare.
+    const timings = startupSnapshot();
+    const bounded = (value, max) => Number.isFinite(value) && value >= 0 && value <= max ? value : null;
+    try {
+      stream.signallingProtocol.sendMessage({ type: 'ghsFirstFrame', attemptId: attempt.id, attemptElapsedMs: bounded(timings.elapsedMs, 900000), navigationTotalMs: bounded(timings.navigationTotalMs, 86400000), displayed: true });
+      attempt.frameSignalSent = true;
+    } catch { /* A closing transport cannot undo an actually displayed frame. */ }
+  }
+  function updateDimensions(video) { metrics.width = video.videoWidth; metrics.height = video.videoHeight; $('stat-resolution').textContent = `${video.videoWidth} × ${video.videoHeight}`; sceneSearch?.position(); }
+  function playbackProgress(video) {
+    let frames = null;
+    try { const value = video.getVideoPlaybackQuality?.().totalVideoFrames; if (Number.isFinite(value)) frames = value; } catch { /* Older browser; use the media clock below. */ }
+    return { frames, time: Number.isFinite(video.currentTime) ? video.currentTime : null };
+  }
+  function armFallbackFrame(video) {
+    if (!window.requestAnimationFrame) return;
+    const observedAttempt = attempt; let previous = playbackProgress(video);
+    const schedule = () => {
+      const id = window.requestAnimationFrame(() => {
+        if (terminal || !observedAttempt.active || observedAttempt !== attempt || frameWatch?.id !== id || frameWatch.video !== video || videoRoot.querySelector('video') !== video) return;
+        frameWatch = null;
+        const current = playbackProgress(video);
+        const advanced = (previous.frames !== null && current.frames !== null && current.frames > previous.frames) || (previous.time !== null && current.time !== null && current.time > previous.time);
+        // Visibility + a new media frame/time step + this animation-frame callback
+        // is a conservative legacy fallback, not a native presentation timestamp.
+        if (!document.hidden && document.visibilityState !== 'hidden' && !video.paused && video.readyState >= 2 && advanced) markFrame(video, observedAttempt, 'animation-frame-progress');
+        previous = current;
+        if (!firstFrame) schedule();
+      });
+      frameWatch = { video, id, attempt: observedAttempt, kind: 'animation' };
+    };
+    schedule();
+  }
+  function armVideoFrame(video) {
+    if (terminal || firstFrame || !attempt?.active || (frameWatch?.video === video && frameWatch.attempt === attempt)) return;
+    cancelFrameWatch(); const observedAttempt = attempt;
+    if (!video.requestVideoFrameCallback) { armFallbackFrame(video); return; }
+    const id = video.requestVideoFrameCallback(() => {
+      if (observedAttempt !== attempt || !observedAttempt.active || terminal || frameWatch?.video !== video || frameWatch?.id !== id) return;
+      frameWatch = null;
+      markFrame(video, observedAttempt);
+      if (!firstFrame) armVideoFrame(video);
+    });
+    frameWatch = { video, id, attempt: observedAttempt };
+  }
+  function watchVideo() {
+    const video = $('video-root').querySelector('video'); if (!video) return;
+    if (!video.dataset.ghsWatched) {
+      video.dataset.ghsWatched = 'true'; video.autoplay = true; video.muted = true; video.playsInline = true; video.draggable = false;
+      video.addEventListener('loadedmetadata', () => { updateDimensions(video); progress(4, '正在接收视频', '视频轨道已到达，等待第一帧解码显示'); });
+      video.addEventListener('playing', () => armVideoFrame(video));
+    }
+    armVideoFrame(video);
+  }
+  new MutationObserver(watchVideo).observe($('video-root'), { childList: true, subtree: true });
+  $('retry').onclick = () => { sessionStorage.removeItem('ghsSession'); sessionStorage.removeItem('ghsEvicted'); sessionStorage.removeItem('ghsReplaced'); sessionStorage.removeItem('ghsKicked'); location.reload(); };
+  $('fullscreen').onclick = () => { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(() => {}); };
+  $('audio-toggle').onclick = () => {
+    if (!stream || terminal) return;
+    const muted = !stream.config.isFlagEnabled(Flags.StartVideoMuted); stream.config.setFlagEnabled(Flags.StartVideoMuted, muted); stream.play();
+    $('audio-toggle').textContent = muted ? '开启声音' : '静音'; $('audio-toggle').setAttribute('aria-pressed', String(!muted));
+  };
+  function autoplayBlocked() {
+    if (terminal || firstFrame) return;
+    document.querySelector('.card').dataset.state = 'waiting';
+    $('stage-title').textContent = '浏览器暂未允许播放'; $('stage-message').textContent = '连接已建立，浏览器阻止了自动播放。允许播放后即可进入场景。'; $('allow-play').hidden = false;
+  }
+  $('allow-play').onclick = async () => {
+    const video = videoRoot.querySelector('video'); if (!video || terminal) return;
+    try { video.muted = true; await video.play(); stream?.play(); watchVideo(); }
+    catch { autoplayBlocked(); }
+  };
+  function requestAccess(message) {
+    clearTimeout(deadline); clearTimeout(elapsedTimer);
+    $('stage-title').textContent = '安全访问仓库'; $('stage-message').textContent = message || '输入管理员提供的访问码后进入。';
+    $('access-form').hidden = false; $('retry').hidden = true; $('access-error').textContent = ''; $('access-code').focus();
+    metrics.state = 'authentication'; document.querySelector('.card').dataset.state = 'authentication'; $('connection-state').textContent = '等待访问验证';
+  }
+  $('access-form').onsubmit = async event => {
+    event.preventDefault(); $('access-submit').disabled = true; $('access-error').textContent = '';
+    try { await start($('access-code').value); } catch (e) { requestAccess(); $('access-error').textContent = e.message; }
+    finally { $('access-code').value = ''; $('access-submit').disabled = false; }
+  };
+  async function start(accessCode) {
+    if (sessionStorage.getItem('ghsKicked') === 'true') return halt('管理员已断开连接', '本页已停止自动重连。需要再次访问时，请主动点击“重新进入”。', false, 'exited');
+    if (sessionStorage.getItem('ghsEvicted') === 'true') return halt('连接已被替换', '新访问者已进入，本标签页已停止自动重连。需要再次访问时，请主动点击“重新进入”。', true);
+    if (sessionStorage.getItem('ghsReplaced') === 'true') return halt('已在其他标签页连接', '同一会话已在其他标签页连接，本页已停止自动重连。点击“重新进入”可申请独立名额。', false, 'exited');
+    beginAttempt('session'); stamp('sessionRequest'); armDeadline();
+    progress(1, '正在连接仓库', '正在获取访问会话，请稍候。');
+    let response = await fetch('/api/session', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ token: sessionStorage.getItem('ghsSession') || undefined, accessCode, displayName: $('access-name').value }) });
+    if (response.status === 409) { sessionStorage.removeItem('ghsSession'); response = await fetch('/api/session', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ accessCode, displayName: $('access-name').value }) }); }
+    const session = await response.json(); if (response.status === 401) return requestAccess(accessCode ? '访问码不正确，请重新输入。' : undefined); if (!response.ok) throw Error(session.error || '无法获取访问会话');
+    stamp('sessionReady');
+    if (session.evicted) { sessionStorage.setItem('ghsKicked', 'true'); return halt('管理员已断开连接', session.message, false, 'exited'); }
+    $('access-form').hidden = true; maxViewers = session.maxViewers || 5;
+    sessionToken = session.token; sessionStorage.setItem('ghsSession', sessionToken); metrics.mode = session.mode; $('stat-mode').textContent = session.mode === 'shared' ? '共享场景' : '独立场景';
+    const wsUrl = `${location.protocol === 'https:' ? 'wss:' : 'ws:'}//${location.host}/ws?token=${encodeURIComponent(sessionToken)}`;
+    // Own the reconnect timer so an eviction/replaced-tab message can cancel every queued attempt.
+    const config = new Config({ useUrlParams: false, initialSettings: { AutoConnect: false, AutoPlayVideo: true, StartVideoMuted: true, HoveringMouse: true, MatchViewportRes: false, TimeoutIfIdle: false, WaitForStreamer: false, BrowserSendOffer: false, UseMic: false, UseCamera: false, MaxReconnectAttempts: 0, ss: wsUrl, WebRTCFPS: quality.captureFPS(session), WebRTCMinBitrate: session.minBitrateMbps * 1000, WebRTCMaxBitrate: session.maxBitrateMbps * 1000 } });
+    quality.configureBitrates(config, session);
+    $('stat-limit').textContent = session.fps === 0 ? '无固定上限' : session.fps + ' FPS';
+    stream = new PixelStreaming(config, { videoElementParent: $('video-root') }); watchVideo();
+    sceneSearch = window.GHSSceneSearch.create({ stream, videoRoot, keyboardFlag: Flags.KeyboardInput, beforeFocus: endPan });
+    // UE5.8 emits parsed objects from its public signallingProtocol. Register
+    // application messages before connect, preserving admission and eviction.
+    const protocol = stream.signallingProtocol;
+    // Observe Epic's public parsed-message events. Never retain SDP, candidates,
+    // access tokens or server timestamps; all stage clocks belong to this attempt.
+    protocol.transport.addListener('open', () => stamp('signallingOpen'));
+    protocol.transport.addListener('message', m => {
+      if (m.type === 'offer') { ensureMediaAttempt(); stamp('offer'); watchPeer(); }
+      else if (m.type === 'iceCandidate') stamp('remoteIce');
+      else if (m.type === 'streamerList' && m.ids?.length) stamp('streamerList');
+    });
+    protocol.transport.addListener('out', m => {
+      if (m.type === 'subscribe') { ensureMediaAttempt(); stamp('subscribe'); watchPeer(); }
+      else if (m.type === 'unsubscribe') suspendMedia();
+      else if (m.type === 'answer') stamp('answer');
+      else if (m.type === 'iceCandidate') stamp('localIce');
+    });
+    protocol.addListener('ghsAdmission', m => {
+      stamp('admission');
+      if (attempt?.active && !terminal) {
+        attempt.server.warmHit = typeof m.warmHit === 'boolean' ? m.warmHit : null;
+        for (const key of ['instanceStartupMs', 'standbyReadyAgeMs', 'admissionToLeaseMs']) { const value = m.timings?.[key]; attempt.server[key] = Number.isFinite(value) && value >= 0 ? value : null; }
+      }
+      if (m.instanceId !== metrics.instanceId) {
+        queuePhase = 'none';
+        if (!firstFrame && !terminal) armDeadline();
+      }
+      metrics.instanceId = m.instanceId; $('stat-instance').textContent = m.instanceId;
+      progress(1, '已接入服务', '名额已分配，正在等待场景就绪', 'waiting');
+    });
+    protocol.addListener('ghsStage', m => {
+      // An owned UE can reconnect its signalling socket while the browser WS
+      // stays open. The service resets that subscription's first-frame gate.
+      if (m.stage === 'waitingStreamer' && firstFrame) { suspendMedia(); ensureMediaAttempt(); }
+      if (m.stage === 'queued') stamp('queued');
+      if (m.stage === 'activatingStreamer') stamp('activating');
+      if (m.stage === 'streamerReady') stamp('ready');
+      if (m.stage === 'queued' && queuePhase === 'none' && !firstFrame && !terminal) {
+        queuePhase = 'waiting'; clearTimeout(deadline);
+        deadline = setTimeout(() => halt('排队等待超时', '等待启动超过 10 分钟，请稍后重新进入。', false, 'waiting'), 600000);
+      } else if (m.stage !== 'queued' && queuePhase === 'waiting' && !firstFrame && !terminal) {
+        queuePhase = 'started'; armDeadline();
+      }
+      progress(m.stage === 'streamerReady' ? 2 : 1, m.stage === 'queued' ? '正在排队' : m.stage === 'streamerReady' ? '场景已就绪' : '正在启动场景', m.message, m.stage === 'streamerReady' ? 'running' : 'waiting');
+    });
+    protocol.addListener('ghsKicked', m => { sessionStorage.setItem('ghsKicked', 'true'); halt('管理员已断开连接', m.message, false, 'exited'); });
+    protocol.addListener('ghsFull', m => halt('当前访问名额已满', m.message, false, 'waiting'));
+    protocol.addListener('ghsEvicted', m => halt('连接已被替换', m.message, true));
+    protocol.addListener('ghsSessionReplaced', m => { sessionStorage.setItem('ghsReplaced', 'true'); halt('已在其他标签页连接', m.message, false, 'exited'); });
+    protocol.addListener('ghsShutdown', m => halt('服务已停止', m.message, false, 'stopped'));
+    protocol.addListener('ghsInstanceFailed', m => halt('场景连接失败', m.message));
+    stream.addEventListener('webRtcSdp', () => { ensureMediaAttempt(); watchPeer(); progress(3, '正在协商视频', '已交换视频会话信息，正在建立媒体连接'); });
+    stream.addEventListener('webRtcConnected', () => {
+      ensureMediaAttempt(); stamp('iceConnected'); watchPeer(); watchVideo();
+      metrics.lowLatencyHints = quality.configureReceivers(stream.webRtcController?.peerConnectionController?.peerConnection);
+      progress(4, '视频已连接', '媒体连接已建立，等待首帧显示');
+    });
+    stream.addEventListener('videoInitialized', watchVideo);
+    stream.addEventListener('dataChannelOpen', () => { stamp('dataChannelOpen'); if (firstFrame && !terminal) sceneSearch.ready(); });
+    stream.addEventListener('playerCount', e => { $('viewer-count').textContent = `${e.data.count} / ${maxViewers}`; metrics.viewerCount = e.data.count; });
+    stream.addEventListener('webRtcDisconnected', suspendMedia);
+    protocol.transport.addListener('close', e => {
+      if (terminal) return;
+      if (e.code === 4003) { sessionStorage.setItem('ghsKicked', 'true'); return halt('管理员已断开连接', '已停止自动重连。请联系管理员，或稍后主动重新进入。', false, 'exited'); }
+      if (e.code === 4004) return halt('当前访问名额已满', `最多 ${maxViewers} 人同时访问，请稍后重新进入。`, false, 'waiting');
+      if (e.code === 4001) return halt('连接已被替换', '连接已被新访问者替换，已停止自动重连。', true);
+      if (e.code === 4002) { sessionStorage.setItem('ghsReplaced', 'true'); return halt('已在其他标签页连接', '同一会话已在其他标签页连接，本页已停止自动重连。', false, 'exited'); }
+      if (e.code === 1001) return halt('服务已停止', '服务连接已关闭，请在启动器确认状态后重新进入。', false, 'stopped');
+      if (reconnectAttempts >= 12) return halt('无法恢复连接', '12次连接尝试均未成功，请检查启动器和网络后重新进入。');
+      endAttempt(); stream.disconnect(); clearTimeout(reconnectTimer);
+      reconnectTimer = setTimeout(() => { if (!terminal) { reconnectAttempts++; beginAttempt('transport-reconnect'); watchVideo(); stream.connect(); } }, 2000);
+    });
+    stream.addEventListener('webRtcFailed', () => { if (!terminal) progress(stage, '媒体连接失败', '暂未建立媒体连接，正在等待恢复；请检查公网端口或 TURN 中继配置。', 'fault'); });
+    stream.addEventListener('playStreamRejected', () => { const video = $('video-root').querySelector('video'); if (video) { video.muted = true; video.play().catch(autoplayBlocked); } });
+    stream.addEventListener('statsReceived', e => {
+      const stats = e.data.aggregatedStats; const v = stats.inboundVideoStats; const pair = stats.getActiveCandidatePair(); const video = $('video-root').querySelector('video');
+      if (video) updateDimensions(video);
+      Object.assign(metrics, meter.update(v));
+      metrics.rttMs = Number.isFinite(pair?.currentRoundTripTime) ? pair.currentRoundTripTime * 1000 : null; metrics.decodedFrames = v.framesDecoded || 0;
+      if (attempt?.active && (attempt.decodedSource !== stats || metrics.decodedFrames < attempt.decodedBaseline)) { attempt.decodedSource = stats; attempt.decodedBaseline = 0; }
+      latestStatsSource = stats; latestDecodedFrames = metrics.decodedFrames;
+      metrics.networkPath = quality.describePath(pair, stats.localCandidates, stats.remoteCandidates);
+      const format = (value, digits, unit) => Number.isFinite(value) ? value.toFixed(digits) + unit : '—';
+      $('stat-fps').textContent = format(metrics.fps, 1, ' fps'); $('stat-bitrate').textContent = format(metrics.bitrateMbps, 2, ' Mbps'); $('stat-rtt').textContent = format(metrics.rttMs, 1, ' ms'); $('stat-frames').textContent = String(metrics.decodedFrames);
+      $('stat-buffer').textContent = format(metrics.bufferMs, 0, ' ms'); $('stat-decode').textContent = format(metrics.decodeMs, 2, ' ms'); $('stat-loss').textContent = format(metrics.lossPercent, 2, '%'); $('stat-freezes').textContent = format(v.freezeCount, 0, ' 次'); $('stat-path').textContent = metrics.networkPath;
+      // RTC statistics are an observed upper bound for decode, not proof that a
+      // frame was displayed. Completion needs the video callback (or the guarded
+      // visible-frame fallback on browsers without that API).
+      if (!firstFrame && video && attempt?.active && metrics.decodedFrames > attempt.decodedBaseline && attempt.stageMs.iceConnected !== null) { observeDecoded('rtc-stats'); armVideoFrame(video); }
+    });
+    // Register all status handlers before automatic connection, so fast local UE startup cannot race them.
+    stream.connect();
+  }
+  start().catch(e => halt('连接失败', e.message));
+})();
